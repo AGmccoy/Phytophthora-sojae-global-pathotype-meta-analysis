@@ -1,9 +1,7 @@
----
-title: "*Phytophthora sojae* pathotype database and validation analyses"
-author: "Austin McCoy"
-date: "`r format(Sys.time(), '%B %d %Y')`"
-output: html_document
----
+
+#### *Phytophthora sojae* pathotype database and validation analyses
+#### Austin McCoy
+#### `r format(Sys.time(), '%B %d %Y')`
 
 ```{r, echo=FALSE}
 #loading in the packages needed for readme
