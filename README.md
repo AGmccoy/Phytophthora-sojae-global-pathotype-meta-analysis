@@ -1,4 +1,4 @@
-
+render("README.Rmd")
 #### *Phytophthora sojae* pathotype database and validation analyses
 #### Austin McCoy
 ```
