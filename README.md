@@ -1,4 +1,4 @@
-*Phytophthora sojae* pathotype database
+# *Phytophthora sojae* pathotype database
 
 Austin McCoy
 
