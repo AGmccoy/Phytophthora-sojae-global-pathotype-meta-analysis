@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">McCoy 2021</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-mccoy-2021-manuscript-michigan-usa-2017" class="section level4">
 <h4>Loading in the data from McCoy 2021 manuscript (Michigan, USA 2017)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;McCoy 2021&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;McCoy 2021&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -764,10 +762,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:69%;">
 <caption>Diversity indices where n = 83 with 53 pathotypes.</caption>
 <colgroup>
@@ -1024,9 +1021,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:58%;">
+<table style="width:86%;">
 <colgroup>
-<col width="12%" />
+<col width="40%" />
 <col width="45%" />
 </colgroup>
 <thead>
@@ -1037,335 +1034,335 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_1</td>
 <td align="center">1a, 1b, 1c, 1k, 3b, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_10</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_11</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3a, 3b, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_12</td>
 <td align="center">1a, 1b, 1c, 1k, 2, 3b, 3c, 4, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_13</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 4, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_14</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3b, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_15</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3b, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_16</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3b, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_17</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_18</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_19</td>
 <td align="center">1a, 1c, 1d, 3b, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_2</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_20</td>
 <td align="center">1a, 1c, 3b, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_21</td>
 <td align="center">1a, 1c, 3b, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_22</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_23</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_24</td>
 <td align="center">1a, 1b, 1c, 1k, 3b, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_25</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_26</td>
 <td align="center">1a, 1b, 1c, 1k, 3b, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_27</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 4, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_28</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3a, 3b, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_29</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_3</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_30</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_31</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_32</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_33</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 3c, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_34</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 3c, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_35</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_36</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_37</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_38</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_39</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_4</td>
 <td align="center">1a, 1b, 1c, 1k, 3b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_40</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_41</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_42</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_43</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3a, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_44</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_45</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_46</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_47</td>
 <td align="center">1a, 1c, 1d, 1k, 3b, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_48</td>
 <td align="center">1a, 1b, 1d, 2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_49</td>
 <td align="center">1a, 1b, 1d, 1k, 3b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_5</td>
 <td align="center">1a, 1b, 1c, 1k, 2, 4, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_50</td>
 <td align="center">1b, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_51</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_52</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_53</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_54</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3a, 3b, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_55</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_56</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_57</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 4, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_58</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_59</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3b, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_6</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3a, 3b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_60</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_61</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_62</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 4, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_63</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_64</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_65</td>
 <td align="center">1b, 1d, 1k, 3b, 3c, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_66</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_67</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_68</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_69</td>
 <td align="center">1a, 1b, 1c, 1k, 2, 3b, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_7</td>
 <td align="center">1a, 1c, 1d, 3b</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_70</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_71</td>
 <td align="center">1b, 1d, 1k, 2, 3a, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_72</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_73</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 3c, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_74</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 3c, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_75</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_76</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_77</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_78</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_79</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3b, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_8</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_80</td>
 <td align="center">1a, 1b, 1c, 1k, 2, 3b, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_81</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_82</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_83</td>
 <td align="center">1a, 1b, 1c, 1k, 2, 3b, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_McCoy_2017_9</td>
 <td align="center">1b, 1d, 1k, 2, 3a, 3b, 5, 7</td>
 </tr>
 </tbody>

@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Anderson 1980</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-anderson-1980-manuscript-ont-can-1979" class="section level4">
 <h4>Loading in the data from Anderson 1980 manuscript (ONT, CAN 1979)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Anderson 1980&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Anderson 1980&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -580,10 +578,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:71%;">
 <caption>Diversity indices where n = 52 with 5 pathotypes.</caption>
 <colgroup>
@@ -648,9 +645,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:33%;">
+<table style="width:68%;">
 <colgroup>
-<col width="12%" />
+<col width="47%" />
 <col width="20%" />
 </colgroup>
 <thead>
@@ -661,211 +658,211 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_1</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_10</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_11</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_12</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_13</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_14</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_15</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_16</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_17</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_18</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_19</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_2</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_20</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_21</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_22</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_23</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_24</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_25</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_26</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_27</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_28</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_29</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_3</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_30</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_31</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_32</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_33</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_34</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_35</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_36</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_37</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_38</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_39</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_4</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_40</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_41</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_42</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_43</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_44</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_45</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_46</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_47</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_48</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_49</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_5</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_50</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_51</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_52</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_6</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_7</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_8</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Anderson_1979_9</td>
 <td align="center">1a, 7</td>
 </tr>
 </tbody>

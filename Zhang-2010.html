@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Zhang 2010</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-zhang-2010-manuscript-heilongjiang-china-2005-2007" class="section level4">
 <h4>Loading in the data from Zhang 2010 manuscript (Heilongjiang, China 2005-2007)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Zhang 2010&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Zhang 2010&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -702,10 +700,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:69%;">
 <caption>Diversity indices where n = 80 with 8 pathotypes.</caption>
 <colgroup>
@@ -782,9 +779,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:33%;">
+<table style="width:69%;">
 <colgroup>
-<col width="12%" />
+<col width="48%" />
 <col width="20%" />
 </colgroup>
 <thead>
@@ -795,323 +792,323 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_1</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_10</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_11</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_12</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_2</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_3</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_4</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_5</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_59</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_6</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_60</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_68</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_7</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_71</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_73</td>
 <td align="center">6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_76</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_77</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_8</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2005_9</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_13</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_14</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_15</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_16</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_17</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_18</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_19</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_20</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_21</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_22</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_23</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_24</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_25</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_26</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_27</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_28</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_29</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_30</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_31</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_32</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_33</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_34</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_61</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_62</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_63</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_64</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_66</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_69</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_78</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_79</td>
 <td align="center">1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2006_80</td>
 <td align="center">1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_35</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_36</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_37</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_38</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_39</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_40</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_41</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_42</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_43</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_44</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_45</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_46</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_47</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_48</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_49</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_50</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_51</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_52</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_53</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_54</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_55</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_56</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_57</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_58</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_65</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_67</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_70</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_72</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_74</td>
 <td align="center">6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Heilongjiang_China_Zhang_2007_75</td>
 <td align="center">6, 7</td>
 </tr>
 </tbody>

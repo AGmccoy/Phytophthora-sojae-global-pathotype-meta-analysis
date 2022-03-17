@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Heritage 1993</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-heritage-1993-manuscript-new-south-wales-north-victoria-australia-1985-1988" class="section level4">
 <h4>Loading in the data from Heritage 1993 manuscript (New South Wales, North Victoria Australia (1985-1988))</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Heritage 1993&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Heritage 1993&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -536,10 +534,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:71%;">
 <caption>Diversity indices where n = 41 with 2 pathotypes.</caption>
 <colgroup>
@@ -592,9 +589,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:29%;">
+<table style="width:86%;">
 <colgroup>
-<col width="12%" />
+<col width="69%" />
 <col width="16%" />
 </colgroup>
 <thead>
@@ -605,167 +602,167 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_10</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_11</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_12</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_13</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_14</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_15</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_16</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_17</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_18</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_19</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_20</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_21</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_22</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_23</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_24</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_25</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_26</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_27</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_28</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_29</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_3</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_30</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_31</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_32</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_33</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_34</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_35</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_36</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_37</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_38</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_39</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_4</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_40</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_41</td>
 <td align="center">3a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_5</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_6</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_7</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_8</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">New_South_Wales_Australia_Heritage_1985-1988_9</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Victoria_Australia_Heritage_1985-1988_1</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Victoria_Australia_Heritage_1985-1988_2</td>
 <td align="center">7</td>
 </tr>
 </tbody>

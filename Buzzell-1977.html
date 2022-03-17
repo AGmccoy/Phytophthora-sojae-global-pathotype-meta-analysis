@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Buzzell 1977</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,18 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-buzzell-1977-manuscript-ont-can-1973-1976" class="section level4">
 <h4>Loading in the data from Buzzell 1977 manuscript (ONT, CAN 1973-1976)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Buzzell 1977&quot;)
-
-#final_data$Isolate &lt;-
-  
-#  gsub(pattern = &quot;Ontario_Canada_Buzzell_&quot;,
-       
-#       replacement = &quot;&quot;,
-       
- #      x = final_data$Isolate) #This removes the character-based &quot;prefix&quot; from the sample names, so that they will be read as numeric instead of double
-
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Buzzell 1977&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -1181,10 +1170,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:69%;">
 <caption>Diversity indices where n = 200 with 5 pathotypes.</caption>
 <colgroup>
@@ -1249,9 +1237,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:39%;">
+<table style="width:74%;">
 <colgroup>
-<col width="12%" />
+<col width="47%" />
 <col width="26%" />
 </colgroup>
 <thead>
@@ -1262,803 +1250,803 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_37</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_38</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_39</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_40</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_41</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_42</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_43</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_44</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_45</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_46</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_47</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_48</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_49</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_50</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_51</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_52</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_53</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_54</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1973_55</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_100</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_101</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_102</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_103</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_104</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_105</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_106</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_107</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_108</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_109</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_110</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_111</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_112</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_113</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_114</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_115</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_116</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_117</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_118</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_119</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_120</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_121</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_122</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_123</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_124</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_125</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_126</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_127</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_128</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_129</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_130</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_131</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_132</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_133</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_134</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_135</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_136</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_137</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_138</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_139</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_23</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_24</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_25</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_26</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_27</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_28</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_29</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_3</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_30</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_31</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_32</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_56</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_57</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_58</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_59</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_60</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_61</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_62</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_63</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_64</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_65</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_66</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_67</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_68</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_69</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_70</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_71</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_72</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_73</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_74</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_75</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_76</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_77</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_78</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_79</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_80</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_81</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_82</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_83</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_84</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_85</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_86</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_87</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_88</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_89</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_90</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_91</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_92</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_93</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_94</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_95</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_96</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_97</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_98</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1974_99</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_1</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_10</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_11</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_12</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_13</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_14</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_140</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_141</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_142</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_143</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_144</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_145</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_146</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_147</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_148</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_149</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_15</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_150</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_151</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_152</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_153</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_154</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_155</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_156</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_157</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_158</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_159</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_16</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_160</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_161</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_162</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_163</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_164</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_165</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_166</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_167</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_168</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_169</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_170</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_171</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_172</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_173</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_174</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_175</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_176</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_177</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_178</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_179</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_180</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_181</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_182</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_183</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_184</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_185</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_186</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_187</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_188</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_189</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_190</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_2</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_33</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_34</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_35</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_4</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_5</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_6</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_7</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_8</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1975_9</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_17</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_18</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_19</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_191</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_192</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_193</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_194</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_195</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_196</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_197</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_198</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_199</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_20</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_200</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_21</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_22</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Buzzell_1976_36</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 </tbody>

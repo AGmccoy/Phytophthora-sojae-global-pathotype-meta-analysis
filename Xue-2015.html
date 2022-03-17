@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Xue 2015</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-xue-2015-manuscript-ontario-canada-2010-2012" class="section level4">
 <h4>Loading in the data from Xue 2015 manuscript (Ontario, Canada 2010-2012)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Xue 2015&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Xue 2015&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -1394,10 +1392,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:71%;">
 <caption>Diversity indices where n = 253 with 22 pathotypes.</caption>
 <colgroup>
@@ -1530,9 +1527,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:56%;">
+<table style="width:85%;">
 <colgroup>
-<col width="12%" />
+<col width="41%" />
 <col width="43%" />
 </colgroup>
 <thead>
@@ -1543,1015 +1540,1015 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_116</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_117</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_118</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_119</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_120</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_121</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_122</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_123</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_124</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_125</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_147</td>
 <td align="center">1a, 1b, 1c, 1k, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_149</td>
 <td align="center">1a, 1c, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_154</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_155</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_156</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_157</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_158</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_159</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_160</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_161</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_162</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_163</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_164</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_197</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_214</td>
 <td align="center">1a, 1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_22</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_221</td>
 <td align="center">1b, 1c, 1d, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_222</td>
 <td align="center">1b, 1c, 1d, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_223</td>
 <td align="center">1b, 1c, 1d, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_224</td>
 <td align="center">1b, 1c, 1d, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_225</td>
 <td align="center">1b, 1c, 1d, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_226</td>
 <td align="center">1b, 1c, 1d, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_228</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_233</td>
 <td align="center">1a, 1b, 1c, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_234</td>
 <td align="center">1a, 1b, 1c, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_235</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_236</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_237</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_238</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_253</td>
 <td align="center">1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_51</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_52</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_53</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_54</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_55</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_56</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_57</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_58</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_59</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_60</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_61</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_78</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2010_79</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_1</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_108</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_109</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_126</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_127</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_128</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_129</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_130</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_144</td>
 <td align="center">1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_145</td>
 <td align="center">1b, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_148</td>
 <td align="center">1a, 1b, 1c, 1k, 3a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_150</td>
 <td align="center">1a, 1c, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_151</td>
 <td align="center">1a, 1c, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_153</td>
 <td align="center">1a, 1b, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_165</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_166</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_167</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_168</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_169</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_170</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_171</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_172</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_173</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_174</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_175</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_176</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_177</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_178</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_179</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_180</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_181</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_182</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_183</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_184</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_198</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_199</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_200</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_215</td>
 <td align="center">1a, 1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_216</td>
 <td align="center">1a, 1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_217</td>
 <td align="center">1a, 1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_218</td>
 <td align="center">1a, 1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_219</td>
 <td align="center">1a, 1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_220</td>
 <td align="center">1a, 1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_23</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_230</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_231</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_232</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_239</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_24</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_240</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_241</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_242</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_243</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_244</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_245</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_246</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_247</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_248</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_249</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_25</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_250</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_251</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_252</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_26</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_62</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_63</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_64</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_65</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_66</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_67</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_80</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
-<td align="center">1a, 1d, 3a, 6, 7</td>
-</tr>
-<tr class="even">
-<td align="center">NA</td>
-<td align="center">1a, 1d, 3a, 6, 7</td>
-</tr>
-<tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_81</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_82</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_83</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_84</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_85</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_86</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_87</td>
+<td align="center">1a, 1d, 3a, 6, 7</td>
+</tr>
+<tr class="even">
+<td align="center">Ontario_Canada_Xue_2011_88</td>
+<td align="center">1a, 1d, 3a, 6, 7</td>
+</tr>
+<tr class="odd">
+<td align="center">Ontario_Canada_Xue_2011_92</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_93</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_94</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_95</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_96</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_97</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_98</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2011_99</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_10</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_100</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_101</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_102</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_103</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_104</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_105</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_106</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_107</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_11</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_110</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_111</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_112</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_113</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_114</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_115</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_12</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_13</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_131</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_132</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_133</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_134</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_135</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_136</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_137</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_138</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_139</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_14</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_140</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_141</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_142</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_143</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_146</td>
 <td align="center">1b, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_15</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_152</td>
 <td align="center">1a, 1c, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_16</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_17</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_18</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_185</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_186</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_187</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_188</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_189</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_19</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_190</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_191</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_192</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_193</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_194</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_195</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_196</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_2</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_20</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_201</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_202</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_203</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_204</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_205</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_206</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_207</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_208</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_209</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_21</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_210</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_211</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_212</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_213</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_227</td>
 <td align="center">1b, 1c, 1d, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_229</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_27</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_28</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_29</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_3</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_30</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_31</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_32</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_33</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_34</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_35</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_36</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_37</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_38</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_39</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_4</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_40</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_41</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_42</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_43</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_44</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_45</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_46</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_47</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_48</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_49</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_5</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_50</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_6</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_68</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_69</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_7</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_70</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_71</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_72</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_73</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_74</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_75</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_76</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_77</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_8</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_89</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_9</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_90</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ontario_Canada_Xue_2012_91</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 </tbody>

@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Mohammadi 2007</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-mohammadi-2007-manuscript-lorestan-golestan-mazadaran-ardabil-iran-1998-2005" class="section level4">
 <h4>Loading in the data from Mohammadi 2007 manuscript (Lorestan, Golestan, Mazadaran, Ardabil, Iran 1998-2005)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Mohammadi 2007&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Mohammadi 2007&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -995,10 +993,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:71%;">
 <caption>Diversity indices where n = 142 with 2 pathotypes.</caption>
 <colgroup>
@@ -1051,9 +1048,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:29%;">
+<table style="width:88%;">
 <colgroup>
-<col width="12%" />
+<col width="70%" />
 <col width="16%" />
 </colgroup>
 <thead>
@@ -1064,571 +1061,571 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_100</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_101</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_102</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_103</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_104</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_105</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_106</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_107</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_108</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_109</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_110</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_135</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_136</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_137</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_138</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_139</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_140</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_141</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_142</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_92</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_93</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_94</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_95</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_96</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_97</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_98</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ardabil_Iran_Mohammadi_1998-2005_99</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_126</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_127</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_128</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_129</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_130</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_131</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_132</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_133</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_134</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_51</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_52</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_53</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_54</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_55</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_56</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_57</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_58</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_59</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_60</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_61</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_62</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_63</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_64</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_65</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_66</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_67</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_68</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_69</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_70</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_71</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_72</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_73</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_74</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_75</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_76</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_77</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_78</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_79</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_80</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_81</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_82</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_83</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_84</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_85</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_86</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_87</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_88</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_89</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_90</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Golestan&amp;Mazandaran_Iran_Mohammadi_1998-2005_91</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_1</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_10</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_11</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_111</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_112</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_113</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_114</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_115</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_116</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_117</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_118</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_119</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_12</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_120</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_121</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_122</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_123</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_124</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_125</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_13</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_14</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_15</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_16</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_17</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_18</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_19</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_2</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_20</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_21</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_22</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_23</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_24</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_25</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_26</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_27</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_28</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_29</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_3</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_30</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_31</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_32</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_33</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_34</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_35</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_36</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_37</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_38</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_39</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_4</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_40</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_41</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_42</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_43</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_44</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_45</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_46</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_47</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_48</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_49</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_5</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_50</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_6</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_7</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_8</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Lorestan_Iran_Mohammadi_1998-2005_9</td>
 <td align="center">7</td>
 </tr>
 </tbody>

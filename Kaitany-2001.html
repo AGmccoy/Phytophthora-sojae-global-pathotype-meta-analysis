@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Kaitany 2001</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-kaitany-2001-manuscript-michigan-usa-1993-1997" class="section level4">
 <h4>Loading in the data from Kaitany 2001 manuscript (Michigan, USA 1993-1997)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Kaitany 2001&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Kaitany 2001&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -739,10 +737,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:69%;">
 <caption>Diversity indices where n = 78 with 57 pathotypes.</caption>
 <colgroup>
@@ -1015,9 +1012,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:58%;">
+<table style="width:96%;">
 <colgroup>
-<col width="12%" />
+<col width="50%" />
 <col width="45%" />
 </colgroup>
 <thead>
@@ -1028,315 +1025,315 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_1</td>
 <td align="center">1a, 1b, 1k</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_10</td>
 <td align="center">1a, 1c, 3c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_11</td>
 <td align="center">1a, 1c, 3c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_12</td>
 <td align="center">1a, 1c, 3c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_13</td>
 <td align="center">1a, 2, 3c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_14</td>
 <td align="center">1a, 1c, 1d, 3c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_15</td>
 <td align="center">1a, 2, 3c, 4, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_16</td>
 <td align="center">1a, 2, 3c, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_17</td>
 <td align="center">1a, 3c, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_18</td>
 <td align="center">1a, 3c, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_19</td>
 <td align="center">1a, 1b, 1c, 3b, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_2</td>
 <td align="center">1a, 3c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_20</td>
 <td align="center">1a, 1c, 1d, 3a, 3c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_21</td>
 <td align="center">1a, 1c, 1k, 3c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_22</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_23</td>
 <td align="center">1a, 1b, 1c, 2, 3b, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_24</td>
 <td align="center">1a, 1c, 1d, 2, 3c, 4, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_25</td>
 <td align="center">1a, 1c, 1d, 2, 3c, 4, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_26</td>
 <td align="center">1a, 1c, 1d, 3c, 4, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_27</td>
 <td align="center">1a, 1b, 2, 3a, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_28</td>
 <td align="center">1a, 1c, 2, 3a, 3b, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_29</td>
 <td align="center">1a, 1d, 1k, 3c, 4, 5, 6</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_3</td>
 <td align="center">1a, 3c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_30</td>
 <td align="center">2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_31</td>
 <td align="center">1a, 1b, 1d, 1k, 3a, 3b, 3c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_32</td>
 <td align="center">1a, 1c, 1d, 1k, 3c, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_33</td>
 <td align="center">1a, 1d, 1k, 2, 3c, 4, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_34</td>
 <td align="center">1a, 1c, 1k, 2, 3a, 4, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_35</td>
 <td align="center">1a, 1c, 1d, 2, 3c, 4, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_36</td>
 <td align="center">1a, 1c, 1d, 2, 3c, 4, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_37</td>
 <td align="center">1a, 1c, 1d, 2, 3c, 4, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_38</td>
 <td align="center">1a, 1c, 1d, 2, 3c, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_39</td>
 <td align="center">1a, 1c, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_4</td>
 <td align="center">1a, 3c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_40</td>
 <td align="center">1a, 2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_41</td>
 <td align="center">1a, 1c, 1d, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_42</td>
 <td align="center">1a, 1b, 1d, 1k, 3a, 3c, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_43</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_44</td>
 <td align="center">1a, 1b, 1d, 2, 3a, 3c, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_45</td>
 <td align="center">1a, 1b, 1d, 2, 3a, 3c, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_46</td>
 <td align="center">1a, 1c, 1d, 1k, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_47</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3c, 4, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_48</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3c, 4, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_49</td>
 <td align="center">1a, 1c, 1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_5</td>
 <td align="center">1a, 3c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_50</td>
 <td align="center">1a, 1c, 1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_51</td>
 <td align="center">1a, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_52</td>
 <td align="center">1a, 1d, 2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_53</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_54</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_55</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_56</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_57</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_58</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_59</td>
 <td align="center">1a, 1b, 1c, 1d, 2, 3a, 3b, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_6</td>
 <td align="center">1a, 4, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_60</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_61</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_62</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_63</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_64</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_65</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_66</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_67</td>
 <td align="center">1a, 1b, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_68</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_69</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_7</td>
 <td align="center">1a, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_70</td>
 <td align="center">1b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_71</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_72</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_73</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_74</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_75</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_76</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_77</td>
 <td align="center">1a, 1b, 1d, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_78</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_8</td>
 <td align="center">1a, 1b, 3c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Michigan_USA_Kaitany_1993-1997_9</td>
 <td align="center">1a, 1c, 3c, 7</td>
 </tr>
 </tbody>

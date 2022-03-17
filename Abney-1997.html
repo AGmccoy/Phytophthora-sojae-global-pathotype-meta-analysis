@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Abney 1997</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-abney-1997-manuscript-indiana-usa-1993" class="section level4">
 <h4>Loading in the data from Abney 1997 manuscript (Indiana, USA 1993)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Abney 1997&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Abney 1997&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -1594,10 +1592,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:71%;">
 <caption>Diversity indices where n = 303 with 21 pathotypes.</caption>
 <colgroup>
@@ -1726,9 +1723,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:47%;">
+<table style="width:75%;">
 <colgroup>
-<col width="12%" />
+<col width="40%" />
 <col width="34%" />
 </colgroup>
 <thead>
@@ -1739,1215 +1736,1215 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_1</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_10</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_100</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_101</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_102</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_103</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_104</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_105</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_106</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_107</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_108</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_109</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_11</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_110</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_111</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_112</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_113</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_114</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_115</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_116</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_117</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_118</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_119</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_12</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_120</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_121</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_122</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_123</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_124</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_125</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_126</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_127</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_128</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_129</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_13</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_130</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_131</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_132</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_133</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_134</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_135</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_136</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_137</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_138</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_139</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_14</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_140</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_141</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_142</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_143</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_144</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_145</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_146</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_147</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_148</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_149</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_15</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_150</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_151</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_152</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_153</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_154</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_155</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_156</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_157</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_158</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_159</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_16</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_160</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_161</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_162</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_163</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_164</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_165</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_166</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_167</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_168</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_169</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_17</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_170</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_171</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_172</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_173</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_174</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_175</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_176</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_177</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_178</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_179</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_18</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_180</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_181</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_182</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_183</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_184</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_185</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_186</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_187</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_188</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_189</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_19</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_190</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_191</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
-<td align="center">1a, 1d, 3a, 6, 7</td>
-</tr>
-<tr class="odd">
-<td align="center">NA</td>
-<td align="center">1a, 1d, 3a, 6, 7</td>
-</tr>
-<tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_192</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_193</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_194</td>
+<td align="center">1a, 1d, 3a, 6, 7</td>
+</tr>
+<tr class="odd">
+<td align="center">Indiana_USA_Abney_1993_195</td>
+<td align="center">1a, 1d, 3a, 6, 7</td>
+</tr>
+<tr class="even">
+<td align="center">Indiana_USA_Abney_1993_196</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_197</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_198</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_199</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_2</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_20</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_200</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_201</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_202</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_203</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_204</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_205</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_206</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_207</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_208</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_209</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_21</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_210</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_211</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_212</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_213</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_214</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_215</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_216</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_217</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_218</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_219</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_22</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_220</td>
 <td align="center">6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_221</td>
 <td align="center">6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_222</td>
 <td align="center">6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_223</td>
 <td align="center">6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_224</td>
 <td align="center">6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_225</td>
 <td align="center">6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_226</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 3a</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_227</td>
 <td align="center">1a, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_228</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_229</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_23</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_230</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_231</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_232</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_233</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_234</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_235</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_236</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_237</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_238</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_239</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_24</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_240</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_241</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_242</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_243</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_244</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_245</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_246</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_247</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_248</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_249</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_25</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_250</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_251</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_252</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_253</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_254</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_255</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_256</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_257</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_258</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_259</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_26</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_260</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_261</td>
 <td align="center">1a, 1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_262</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_263</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_264</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_265</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_266</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_267</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_268</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_269</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_27</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_270</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_271</td>
 <td align="center">1a, 1b, 1d, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_272</td>
 <td align="center">1a, 1b, 1d, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_273</td>
 <td align="center">1a, 1b, 1d, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_274</td>
 <td align="center">1a, 1b, 1d, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_275</td>
 <td align="center">1a, 1b, 1d, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_276</td>
 <td align="center">1a, 1d, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_277</td>
 <td align="center">1a, 1d, 3a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_278</td>
 <td align="center">1a, 1d, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_279</td>
 <td align="center">1a, 1d, 3a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_28</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_280</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_281</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_282</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_283</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_284</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_285</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_286</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_287</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_288</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_289</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_29</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_290</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_291</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_292</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_293</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_294</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_295</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_296</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_297</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_298</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_299</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_3</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_30</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_300</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_301</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_302</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_303</td>
 <td align="center">1a, 1b, 1c, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_31</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_32</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_33</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_34</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_35</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_36</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_37</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_38</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_39</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_4</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_40</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_41</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_42</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_43</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_44</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_45</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_46</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_47</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_48</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_49</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_5</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_50</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_51</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_52</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_53</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_54</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_55</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_56</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_57</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_58</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_59</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_6</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_60</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_61</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_62</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_63</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_64</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_65</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_66</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_67</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_68</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_69</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_7</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_70</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_71</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_72</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_73</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_74</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_75</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_76</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_77</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_78</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_79</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_8</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_80</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_81</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_82</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_83</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_84</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_85</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_86</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_87</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_88</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_89</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_9</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_90</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_91</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_92</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_93</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_94</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_95</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_96</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_97</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_98</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Indiana_USA_Abney_1993_99</td>
 <td align="center">1a, 7</td>
 </tr>
 </tbody>

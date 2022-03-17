@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Robertson 2009</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-robertson-2009-manuscript-iowa-usa-2005" class="section level4">
 <h4>Loading in the data from Robertson 2009 manuscript (Iowa, USA 2005)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Robertson 2009&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Robertson 2009&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -541,10 +539,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:69%;">
 <caption>Diversity indices where n = 31 with 27 pathotypes.</caption>
 <colgroup>
@@ -697,10 +694,10 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:50%;">
+<table style="width:81%;">
 <colgroup>
-<col width="12%" />
-<col width="37%" />
+<col width="40%" />
+<col width="40%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -710,127 +707,127 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_1</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_10</td>
 <td align="center">1a, 1c, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_11</td>
 <td align="center">1a, 1d, 1k</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_12</td>
 <td align="center">3a, 6</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_13</td>
 <td align="center">1d, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_14</td>
 <td align="center">1a, 1d, 1k, 3a</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_15</td>
 <td align="center">1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_16</td>
 <td align="center">1a, 1k, 4, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_17</td>
 <td align="center">1b, 1d, 1k, 3a, 4</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_18</td>
 <td align="center">1a, 1b, 1k, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_19</td>
 <td align="center">1d, 1k, 5</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_2</td>
 <td align="center">1a, 1b, 1c, 1k, 3a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_20</td>
 <td align="center">1a, 1b, 1c, 1d, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_21</td>
 <td align="center">1k, 3a, 4, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_22</td>
 <td align="center">1a, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_23</td>
 <td align="center">1c, 1k, 3c, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_24</td>
 <td align="center">1b, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_25</td>
 <td align="center">1a, 1k, 4, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_26</td>
 <td align="center">1b, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_27</td>
 <td align="center">1b, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_28</td>
 <td align="center">1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_29</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_3</td>
 <td align="center">1b, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_30</td>
 <td align="center">1b, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_31</td>
 <td align="center">1b, 1k, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_4</td>
 <td align="center">3a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_5</td>
 <td align="center">1a, 1b, 1c, 1k, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_6</td>
 <td align="center">1b, 1d, 1k, 3c, 4, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_7</td>
 <td align="center">1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_8</td>
 <td align="center">1a, 1d, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Iowa_USA_Robertson_2005_9</td>
 <td align="center">1a, 1d, 1k, 3a, 3c, 4, 7</td>
 </tr>
 </tbody>

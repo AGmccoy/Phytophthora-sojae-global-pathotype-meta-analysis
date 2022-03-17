@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Nelson 2008</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-nelson-2008-manuscript-north-dakota-usa-2002-2004" class="section level4">
 <h4>Loading in the data from Nelson 2008 manuscript (North Dakota, USA 2002-2004)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Nelson 2008&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Nelson 2008&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -1010,10 +1008,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:69%;">
 <caption>Diversity indices where n = 157 with 16 pathotypes.</caption>
 <colgroup>
@@ -1122,9 +1119,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:40%;">
+<table style="width:83%;">
 <colgroup>
-<col width="12%" />
+<col width="55%" />
 <col width="27%" />
 </colgroup>
 <thead>
@@ -1135,631 +1132,631 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_1</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_10</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_100</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_101</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_102</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_103</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_104</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_105</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_106</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_107</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_108</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_109</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_11</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_110</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_111</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_112</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_113</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_114</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_115</td>
 <td align="center">1a, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_116</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_117</td>
 <td align="center">1a, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_118</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_119</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_12</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_120</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_121</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_122</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_123</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_124</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_125</td>
 <td align="center">1a, 1b, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_126</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_127</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_128</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_129</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_13</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_130</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_131</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_132</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_133</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_134</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_135</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_136</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_137</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_138</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_139</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_14</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_140</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_141</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_142</td>
 <td align="center">1a, 1c, 1d, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_143</td>
 <td align="center">1a, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_144</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_145</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_146</td>
 <td align="center">1a, 1d, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_147</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_148</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_149</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_15</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_150</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_151</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_152</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_153</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_154</td>
 <td align="center">1a, 1b, 1d, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_155</td>
 <td align="center">1a, 1c, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_156</td>
 <td align="center">1a, 1c, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_157</td>
 <td align="center">1a, 1c, 1d, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_16</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_17</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_18</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_19</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_2</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_20</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_21</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_22</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_23</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_24</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_25</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_26</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_27</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_28</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_29</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_3</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_30</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_31</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_32</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_33</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_34</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_35</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_36</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_37</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_38</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_39</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_4</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_40</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_41</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_42</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_43</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_44</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_45</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_46</td>
 <td align="center">1a, 3a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_47</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_48</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_49</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_5</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_50</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_51</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_52</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_53</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_54</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_55</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_56</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_57</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_58</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_59</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_6</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_60</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_61</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_62</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_63</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_64</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_65</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_66</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_67</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_68</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_69</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_7</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_70</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_71</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_72</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_73</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_74</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_75</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_76</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_77</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_78</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_79</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_8</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_80</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_81</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_82</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_83</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_84</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_85</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_86</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_87</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_88</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_89</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_9</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_90</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_91</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_92</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_93</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_94</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_95</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_96</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_97</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_98</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">North_Dakota_USA_Nelson_2002-2004_99</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 </tbody>

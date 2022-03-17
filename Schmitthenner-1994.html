@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Schmitthenner 1994</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-schmitthenner-1994-manuscript-ohio-19781980-19901991" class="section level4">
 <h4>Loading in the data from Schmitthenner 1994 manuscript (Ohio 1978/1980, 1990/1991)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Schmitthenner 1994&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Schmitthenner 1994&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -2258,10 +2256,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:71%;">
 <caption>Diversity indices where n = 469 with 8 pathotypes.</caption>
 <colgroup>
@@ -2338,9 +2335,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:40%;">
+<table style="width:82%;">
 <colgroup>
-<col width="12%" />
+<col width="54%" />
 <col width="27%" />
 </colgroup>
 <thead>
@@ -2351,1879 +2348,1879 @@ pander(complexities$grouped_complexities)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_1</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_10</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_11</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_12</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_13</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_14</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_15</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_16</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_161</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_162</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_163</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_164</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_165</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_166</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_167</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_168</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_169</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_17</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_196</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_197</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_198</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_199</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_2</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_200</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_201</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_209</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_210</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_211</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_212</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_213</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_214</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_215</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_216</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_217</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_218</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_219</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_220</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_221</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_222</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_223</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_224</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_225</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_226</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_227</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_228</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_229</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_230</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_231</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_232</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_233</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_234</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_235</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_236</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_237</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_238</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_239</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_240</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_241</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_242</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_243</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_244</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_245</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_246</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_247</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_248</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_249</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_250</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_251</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_252</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_253</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_254</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_255</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_256</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_257</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_258</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_259</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_260</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_261</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_262</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_263</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_264</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_265</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_266</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_267</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_268</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_269</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_270</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_271</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_272</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_273</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_274</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_275</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_276</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_277</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_278</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_279</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_280</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_281</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_282</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_283</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_284</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_285</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_286</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_287</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_288</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_289</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_290</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_291</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_292</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_293</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_294</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_295</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_296</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_297</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_298</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_299</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_3</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_300</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_301</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_302</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_303</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_304</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_305</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_306</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_307</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_308</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_309</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_310</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_311</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_312</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_313</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_314</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_315</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_316</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_317</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_318</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_319</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_320</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_321</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_322</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_323</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_324</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_325</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_326</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_327</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_388</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_389</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_390</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_391</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_392</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_4</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_404</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_405</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_406</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_407</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_408</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_409</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_410</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_411</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_412</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_413</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_414</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_415</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_416</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_417</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_418</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_419</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_420</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_421</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_422</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_423</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_424</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_425</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_426</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_427</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_428</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_429</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_430</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_431</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_432</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_433</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_434</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_435</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_436</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_437</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_438</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_439</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_440</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_441</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_442</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_443</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_444</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_47</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_48</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_49</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_5</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_50</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_51</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_52</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_53</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_54</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_55</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_56</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_57</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_58</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_59</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_6</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_60</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_61</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_62</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_63</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_64</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_65</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_66</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_67</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_68</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_69</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_7</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_70</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_71</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_72</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_73</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_74</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_75</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_76</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_77</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_78</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_79</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_8</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_80</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1978-1980_9</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_100</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_101</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_102</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_103</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_104</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_105</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_106</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_107</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_108</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_109</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_110</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_111</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_112</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_113</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_114</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_115</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_116</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_117</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_118</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_119</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_120</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_121</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_122</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_123</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_124</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_125</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_126</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_127</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_128</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_129</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_130</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_131</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_132</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_133</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_134</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_135</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_136</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_137</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_138</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_139</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_140</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_141</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_142</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_170</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_171</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_172</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_173</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_174</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_175</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_176</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_177</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_178</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_179</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_18</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_180</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_181</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_182</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_183</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_184</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_185</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_186</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_187</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_188</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_189</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_19</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_190</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_191</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_192</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_20</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_202</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_203</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_204</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_205</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_206</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_207</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_208</td>
 <td align="center">1a, 1c, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_21</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_22</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_23</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_24</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_25</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_26</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_27</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_28</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_29</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_30</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_31</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_32</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_328</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_329</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_33</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_330</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_331</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_332</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_333</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_334</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_335</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_336</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_337</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_338</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_339</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_34</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_340</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_341</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_342</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_343</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_344</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_345</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_346</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_347</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_348</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_349</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_35</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_350</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_351</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_352</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_353</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_354</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_355</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_356</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_357</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_358</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_359</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_36</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_360</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_361</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_362</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_363</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_364</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_365</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_366</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_367</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_368</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_369</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_37</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_370</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_371</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_372</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_373</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_38</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_39</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_393</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_394</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_395</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_396</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_397</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_398</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_399</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_40</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_400</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_401</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_402</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_403</td>
 <td align="center">1a, 1d, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_41</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_42</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_43</td>
 <td align="center">7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_44</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_445</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_446</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_447</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_448</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_449</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_450</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_465</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_466</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_467</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_468</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_469</td>
 <td align="center">1a, 1b, 1c, 1k, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_81</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_82</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_83</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_84</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_85</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_86</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_87</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_88</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_89</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_90</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_91</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_92</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_93</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_94</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_95</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_96</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_97</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_98</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1990_99</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_143</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_144</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_145</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_146</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_147</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_148</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_149</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_150</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_151</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_152</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_153</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_154</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_155</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_156</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_157</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_158</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_159</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_160</td>
 <td align="center">1a, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_193</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_194</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_195</td>
 <td align="center">1a, 1c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_374</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_375</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_376</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_377</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_378</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_379</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_380</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_381</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_382</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_383</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_384</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_385</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_386</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_387</td>
 <td align="center">1a, 3a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_45</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_451</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_452</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_453</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_454</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_455</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_456</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_457</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_458</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_459</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_46</td>
 <td align="center">7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_460</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_461</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_462</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_463</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
+<td align="center">Ohio_USA_Schmitthenner_1991_464</td>
 <td align="center">1a, 6, 7</td>
 </tr>
 </tbody>

@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Costamilan 2013</h1>
 <h4 class="author">Austin McCoy</h4>
-<h4 class="date">September 28 2021</h4>
+<h4 class="date">March 17 2022</h4>
 
 </div>
 
@@ -180,9 +180,7 @@ library(hagis)</code></pre>
 <div id="loading-in-the-data-from-costamilan-2013-manuscript-riogrande-do-sul-santa-catarina-parana-brazil-2006-2010" class="section level4">
 <h4>Loading in the data from Costamilan 2013 manuscript (RioGrande do Sul, Santa Catarina, Parana, Brazil 2006-2010)</h4>
 <pre class="r"><code>final_data &lt;- read_excel(&quot;pathotype surveys data.xlsx&quot;, 
-    sheet = &quot;Costamilan 2013&quot;)
-
-#Figure out why in the diversity table the isolates come out as NA (its because they are a character, and all instances of trying to change it to Numeric (i.e. removing character prefix) have caused NA to appear.) CAN NOT FIX??</code></pre>
+    sheet = &quot;Costamilan 2013&quot;)</code></pre>
 </div>
 <div id="setting-the-hagis-arguments" class="section level4">
 <h4>Setting the ‘hagis’ arguments</h4>
@@ -585,10 +583,9 @@ pander(complexities$grouped_complexities)</code></pre>
 </div>
 <div id="pathotype-diversity-summary" class="section level4">
 <h4>Pathotype diversity summary</h4>
-<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)</code></pre>
-<pre><code>## Warning in data.frame(Sample = as.numeric(names(y)), Pathotype = unname(y), :
-## NAs introduced by coercion</code></pre>
-<pre class="r"><code>pander(diversity)</code></pre>
+<pre class="r"><code>diversity &lt;- do.call(calculate_diversities, hagis_args)
+
+pander(diversity)</code></pre>
 <table style="width:69%;">
 <caption>Diversity indices where n = 37 with 17 pathotypes.</caption>
 <colgroup>
@@ -701,164 +698,249 @@ pander(complexities$grouped_complexities)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>individual_pathotypes(diversity)</code></pre>
-<table style="width:57%;">
+<table style="width:69%;">
+<caption>Table continues below</caption>
 <colgroup>
-<col width="12%" />
-<col width="44%" />
+<col width="69%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="center">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Arroio_Grande_Brazil_Costamilan_2006-2010_17</td>
+</tr>
+<tr class="even">
+<td align="center">Cachoeira_do_Sul_Brazil_Costamilan_2006-2010_15</td>
+</tr>
+<tr class="odd">
+<td align="center">Cachoeira_do_Sul_Brazil_Costamilan_2006-2010_16</td>
+</tr>
+<tr class="even">
+<td align="center">Cachoeira_do_Sul_Brazil_Costamilan_2006-2010_29</td>
+</tr>
+<tr class="odd">
+<td align="center">Cachoeirinha_Brazil_Costamilan_2006-2010_27</td>
+</tr>
+<tr class="even">
+<td align="center">Cachoeirinha_Brazil_Costamilan_2006-2010_28</td>
+</tr>
+<tr class="odd">
+<td align="center">Camaqua_Brazil_Costamilan_2006-2010_36</td>
+</tr>
+<tr class="even">
+<td align="center">Campos_Novos_Brazil_Costamilan_2006-2010_26</td>
+</tr>
+<tr class="odd">
+<td align="center">Carambei_Brazil_Costamilan_2006-2010_23</td>
+</tr>
+<tr class="even">
+<td align="center">Castro_Brazil_Costamilan_2006-2010_21</td>
+</tr>
+<tr class="odd">
+<td align="center">Chapada_Brazil_Costamilan_2006-2010_19</td>
+</tr>
+<tr class="even">
+<td align="center">Colorado_Brazil_Costamilan_2006-2010_33</td>
+</tr>
+<tr class="odd">
+<td align="center">Coxilha_Brazil_Costamilan_2006-2010_11</td>
+</tr>
+<tr class="even">
+<td align="center">Coxilha_Brazil_Costamilan_2006-2010_6</td>
+</tr>
+<tr class="odd">
+<td align="center">Coxilha_Brazil_Costamilan_2006-2010_7</td>
+</tr>
+<tr class="even">
+<td align="center">Coxilha_Brazil_Costamilan_2006-2010_8</td>
+</tr>
+<tr class="odd">
+<td align="center">Ijui_Brazil_Costamilan_2006-2010_4</td>
+</tr>
+<tr class="even">
+<td align="center">Ipiranga_do_Sul_Brazil_Costamilan_2006-2010_3</td>
+</tr>
+<tr class="odd">
+<td align="center">Lagoa_Vermelha_Brazil_Costamilan_2006-2010_37</td>
+</tr>
+<tr class="even">
+<td align="center">Maracaju_Brazil_Costamilan_2006-2010_22</td>
+</tr>
+<tr class="odd">
+<td align="center">Marau_Brazil_Costamilan_2006-2010_32</td>
+</tr>
+<tr class="even">
+<td align="center">Montividiu_Brazil_Costamilan_2006-2010_10</td>
+</tr>
+<tr class="odd">
+<td align="center">Nao-Me-Toque_Brazil_Costamilan_2006-2010_20</td>
+</tr>
+<tr class="even">
+<td align="center">Passo_Fundo_Brazil_Costamilan_2006-2010_1</td>
+</tr>
+<tr class="odd">
+<td align="center">Passo_Fundo_Brazil_Costamilan_2006-2010_12</td>
+</tr>
+<tr class="even">
+<td align="center">Passo_Fundo_Brazil_Costamilan_2006-2010_13</td>
+</tr>
+<tr class="odd">
+<td align="center">Passo_Fundo_Brazil_Costamilan_2006-2010_18</td>
+</tr>
+<tr class="even">
+<td align="center">Passo_Fundo_Brazil_Costamilan_2006-2010_2</td>
+</tr>
+<tr class="odd">
+<td align="center">Passo_Fundo_Brazil_Costamilan_2006-2010_34</td>
+</tr>
+<tr class="even">
+<td align="center">Passo_Fundo_Brazil_Costamilan_2006-2010_35</td>
+</tr>
+<tr class="odd">
+<td align="center">Pato_Branco_Brazil_Costamilan_2006-2010_31</td>
+</tr>
+<tr class="even">
+<td align="center">Pelotas_Brazil_Costamilan_2006-2010_30</td>
+</tr>
+<tr class="odd">
+<td align="center">Ponta_Grossa_Brazil_Costamilan_2006-2010_14</td>
+</tr>
+<tr class="even">
+<td align="center">Ronda_Alta_Brazil_Costamilan_2006-2010_9</td>
+</tr>
+<tr class="odd">
+<td align="center">Sananduva_Brazil_Costamilan_2006-2010_24</td>
+</tr>
+<tr class="even">
+<td align="center">Santo_Angelo_Brazil_Costamilan_2006-2010_25</td>
+</tr>
+<tr class="odd">
+<td align="center">Uberaba_Brazil_Costamilan_2006-2010_5</td>
+</tr>
+</tbody>
+</table>
+<table style="width:44%;">
+<colgroup>
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
 <th align="center">Pathotype</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1b, 1d, 2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1b, 1d, 2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1b, 1d, 2, 3a, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1a, 1c, 1d, 1k, 2, 3c, 4, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3a, 3c, 4, 5, 6, 7, 8</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3a, 3c, 4, 5, 6, 7, 8</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 4, 5, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3a, 5, 7, 8</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 3a, 5, 7, 8</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3b, 3c, 4, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3a, 3c, 5, 7, 8</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 3a, 5, 7, 8</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 3a, 5, 7, 8</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1b, 1d, 2, 3a, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3b, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3a, 5, 7, 8</td>
 </tr>
 <tr class="even">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 7</td>
 </tr>
 <tr class="odd">
-<td align="center">NA</td>
 <td align="center">1d, 2, 3c, 4, 5, 6, 7</td>
 </tr>
 </tbody>
