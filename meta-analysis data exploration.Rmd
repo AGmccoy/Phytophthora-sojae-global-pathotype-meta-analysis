@@ -400,26 +400,29 @@ USA_timepoints_mean_complexity <- USA_isolate_complexity_metadata %>%
 pander(USA_timepoints_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
 
 # Lets look at this data using a boxplot
-USA_complexity_box <- ggplot(USA_isolate_complexity_metadata, aes(x=time_point, y=path_comp)) +
+USA_complexity_box <- ggplot(USA_isolate_complexity_metadata, aes(x=time_point, y=path_comp, fill = time_point)) +
   geom_boxplot() +
+  scale_fill_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  coord_flip() +
+  theme_gray() +
   stat_summary(fun.y=mean, geom="point", shape=20, size=3, color="black", fill="black") +
   geom_signif(comparisons = list(c("1990_1999", "2000_2013"),c("1990_1999", "2013_2019"),c("2000_2013","2013_2019")), 
               test = "t.test",
               map_signif_level = TRUE) + 
-theme(axis.text.x = element_text(size = 10, face = "bold", angle=45, hjust=1, family = "serif"),
+theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
                      axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
-                     axis.title.x = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.y = element_text(size = 10, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_blank(),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     legend.text = element_blank(),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
-                     legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
-                      ggtitle("USA") +
-  xlab("Time Point") + ylab("Pathotype Complexity")+
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ylim(0,10) +
+  xlab("Time Frame") + ylab("Pathotype Complexity")+
   ggtitle("USA")
 USA_complexity_box # looks like there was an increase in pathotype complexity at the latest timepoint, as compared to the 1990-1999 and 2000-2013 timepoints. But we dont know if they are significant or not, so lets test that next.
 
@@ -484,26 +487,29 @@ ARG_timepoints_mean_complexity <- ARG_isolate_complexity_metadata %>%
 pander(ARG_timepoints_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
 
 # Lets look at this data using a boxplot
-ARG_complexity_box <- ggplot(ARG_isolate_complexity_metadata, aes(x=time_point, y=path_comp)) +
+ARG_complexity_box <- ggplot(ARG_isolate_complexity_metadata, aes(x=time_point, y=path_comp, fill = time_point)) +
   geom_boxplot() +
+  scale_fill_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  coord_flip() +
+  theme_gray() +
   stat_summary(fun.y=mean, geom="point", shape=20, size=3, color="black", fill="black") +
   geom_signif(comparisons = list(c("1989_1999", "2000_2012"),c("1989_1999", "2013_2019"),c("2000_2012","2013_2019")), 
               test = "t.test",
               map_signif_level = TRUE) +
-  theme(axis.text.x = element_text(size = 10, face = "bold", angle=45, hjust=1, family = "serif"),
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
                      axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
-                     axis.title.x = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.y = element_text(size = 10, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     legend.text = element_blank(),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
-                     legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
-                      ggtitle("USA") +
-  xlab("Time Point") + ylab("Pathotype Complexity")+
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ylim(0,10) +
+  xlab("Time Frame") + ylab("Pathotype Complexity")+
   ggtitle("Argentina")
 ARG_complexity_box # looks like there was an increase in pathotype complexity at the latest timepoint, as compared to the 1990-1999 and 2000-2013 timepoints. But we dont know if they are significant or not, so lets test that next.
 
@@ -566,26 +572,29 @@ CAN_timepoints_mean_complexity <- CAN_isolate_complexity_metadata %>%
 pander(CAN_timepoints_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
 
 # Lets look at this data using a boxplot
-CAN_complexity_box <- ggplot(CAN_isolate_complexity_metadata, aes(x=time_point, y=path_comp)) +
+CAN_complexity_box <- ggplot(CAN_isolate_complexity_metadata, aes(x=time_point, y=path_comp, fill = time_point)) +
   geom_boxplot() +
+  scale_fill_manual(values = c("#808080", "#FF9999")) +
+  coord_flip() +
+  theme_gray() +
   stat_summary(fun.y=mean, geom="point", shape=20, size=3, color="black", fill="black") +
   geom_signif(comparisons = list(c("2000_2013","2014_2019")), 
               test = "t.test",
               map_signif_level = TRUE) +
-  theme(axis.text.x = element_text(size = 10, face = "bold", angle=45, hjust=1, family = "serif"),
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
                      axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
-                     axis.title.x = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.y = element_text(size = 10, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_blank(),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      legend.text = element_text(size = 10, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
-                     legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
-                      ggtitle("USA") +
-  xlab("Time Point") + ylab("Pathotype Complexity")+
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ylim(0,10) +
+  xlab("Time Frame") + ylab("Pathotype Complexity")+
   ggtitle("Canada")
 CAN_complexity_box # looks like there was a slight decrease in pathotype complexity at the latest timepoint, as compared to the 2000-2013 timepoint. But we dont know if they are significant or not, so lets test that next.
 
@@ -648,27 +657,31 @@ CHI_timepoints_mean_complexity <- CHI_isolate_complexity_metadata %>%
 pander(CHI_timepoints_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
 
 # Lets look at this data using a boxplot
-CHI_complexity_box <- ggplot(CHI_isolate_complexity_metadata, aes(x=time_point, y=path_comp)) +
+CHI_complexity_box <- ggplot(CHI_isolate_complexity_metadata, aes(x=time_point, y=path_comp, fill = time_point)) +
   geom_boxplot() +
+  scale_fill_manual(values = c("#99CCFF", "#808080")) +
+  coord_flip() +
+  theme_gray() +
   stat_summary(fun.y=mean, geom="point", shape=20, size=3, color="black", fill="black") +
   geom_signif(comparisons = list(c("1990_1999", "2000_2013")), 
               test = "t.test",
               map_signif_level = TRUE) +
-  theme(axis.text.x = element_text(size = 10, face = "bold", angle=45, hjust=1, family = "serif"),
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
                      axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
-                     axis.title.x = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.y = element_text(size = 10, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      legend.text = element_text(size = 10, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
-                     legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
-                      ggtitle("USA") +
-  xlab("Time Point") + ylab("Pathotype Complexity")+
-  ggtitle("China") # why redundant?
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ylim(0,10) +
+  xlab("Time Frame") + ylab("Pathotype Complexity") +
+  ggtitle("China") 
+
 CHI_complexity_box 
 
 # testing significance between China timepoints pathotype complexity - Welchs t.test
@@ -688,6 +701,8 @@ CHI_sig_90_99_00_13
 ```{r, dpi=300}
 combined_path_comp_temporal <- plot_grid(ARG_complexity_box,CAN_complexity_box,CHI_complexity_box,USA_complexity_box)
 combined_path_comp_temporal
+
+ggsave("combined pathotype complexity over time coordflip.png", plot=combined_path_comp_temporal, width=20, height=16, dpi = 600)
 ```
 
 
@@ -885,24 +900,26 @@ USA_timepoint_gene_summary <- USA_final_data %>%
             perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
 # this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
 
-plot <- ggplot(USA_timepoint_gene_summary, aes(Rps, perc_pathogenic, fill=time_point))
-plot <- plot + geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d')
-USA_rps_eff_tim <- plot + theme_gray() +
+USA_rps_eff_tim <- ggplot(USA_timepoint_gene_summary, aes(x=Rps, y=perc_pathogenic, fill=time_point)) + 
+  geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d') +
+  scale_fill_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  theme_gray() +
   geom_hline(yintercept=40, linetype="dashed", color = "red") +
-  theme(axis.text.x = element_text(size = 10, face = "bold", angle=45, hjust=1, family = "serif"),
-                     axis.text.y = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.x = element_text(size = 15, face = "bold", family = "serif"),
-                     axis.title.y = element_text(size = 10, face = "bold", family = "serif"),
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_blank(),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
                      legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
-                      ggtitle("USA") +
-  xlab("Rps gene") + ylab("Percent Isolates Pathogenic")
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                  labs(x="Rps gene",y="Percent Isolates Pathogenic", fill="Time Frame") +
+          ggtitle("USA") 
+         
 USA_rps_eff_tim
 
 ```
@@ -917,24 +934,25 @@ ARG_timepoint_gene_summary <- ARG_final_data %>%
             perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
 # this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
 
-plot <- ggplot(ARG_timepoint_gene_summary, aes(Rps, perc_pathogenic, fill=time_point))
-plot <- plot + geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d')
-ARG_rps_eff_tim <- plot + theme_gray() +
+ARG_rps_eff_tim <- ggplot(ARG_timepoint_gene_summary, aes(x=Rps, y=perc_pathogenic, fill=time_point)) +
+geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d') +
+scale_fill_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+theme_gray() +
   geom_hline(yintercept=40, linetype="dashed", color = "red") +
-  theme(axis.text.x = element_text(size = 10, face = "bold", angle=45, hjust=1, family = "serif"),
-                     axis.text.y = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.x = element_text(size = 15, face = "bold", family = "serif"),
-                     axis.title.y = element_text(size = 10, face = "bold", family = "serif"),
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
                      legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
                       ggtitle("Argentina") +
-  xlab("Rps gene") + ylab("Percent Isolates Pathogenic")
+  labs(x="Rps gene",y="Percent Isolates Pathogenic", fill="Time Frame") 
 ARG_rps_eff_tim
 
 ```
@@ -950,24 +968,25 @@ CAN_timepoint_gene_summary <- CAN_final_data %>%
             perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
 # this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
 
-plot <- ggplot(CAN_timepoint_gene_summary, aes(Rps, perc_pathogenic, fill=time_point))
-plot <- plot + geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d')
-CAN_rps_eff_tim <- plot + theme_gray() +
+CAN_rps_eff_tim <- ggplot(CAN_timepoint_gene_summary, aes(x=Rps, y=perc_pathogenic, fill=time_point)) +
+geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d') +
+scale_fill_manual(values = c("#808080", "#FF9999")) +
+theme_gray() +
   geom_hline(yintercept=40, linetype="dashed", color = "red") +
-  theme(axis.text.x = element_text(size = 10, face = "bold", angle=45, hjust=1, family = "serif"),
-                     axis.text.y = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.x = element_text(size = 15, face = "bold", family = "serif"),
-                     axis.title.y = element_text(size = 10, face = "bold", family = "serif"),
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_blank(),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
                      legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
                       ggtitle("Canada") +
-  xlab("Rps gene") + ylab("Percent Isolates Pathogenic")
+  labs(x="Rps gene",y="Percent Isolates Pathogenic", fill="Time Frame")
 CAN_rps_eff_tim
 
 ```
@@ -981,24 +1000,25 @@ CHI_timepoint_gene_summary <- CHI_final_data %>%
             perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
 # this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
 
-plot <- ggplot(CHI_timepoint_gene_summary, aes(Rps, perc_pathogenic, fill=time_point))
-plot <- plot + geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d')
-CHI_rps_eff_tim <- plot + theme_gray() +
+CHI_rps_eff_tim <- ggplot(CHI_timepoint_gene_summary, aes(Rps, perc_pathogenic, fill=time_point)) +
+geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d') +
+scale_fill_manual(values = c("#99CCFF", "#808080")) +
+theme_gray() +
   geom_hline(yintercept=40, linetype="dashed", color = "red") +
-  theme(axis.text.x = element_text(size = 10, face = "bold", angle=45, hjust=1, family = "serif"),
-                     axis.text.y = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.x = element_text(size = 15, face = "bold", family = "serif"),
-                     axis.title.y = element_text(size = 10, face = "bold", family = "serif"),
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
                      legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
                       ggtitle("China") +
-  xlab("Rps gene") + ylab("Percent Isolates Pathogenic")
+  labs(x="Rps gene",y="Percent Isolates Pathogenic", fill="Time Frame")
 CHI_rps_eff_tim
 
 ```
@@ -1008,6 +1028,8 @@ CHI_rps_eff_tim
 # bar-graphs on resistance-gene efficacy
 combined_gene_eff_temporal <- plot_grid(ARG_rps_eff_tim,CAN_rps_eff_tim,CHI_rps_eff_tim,USA_rps_eff_tim)
 combined_gene_eff_temporal
+
+ggsave("combined pathotype combined gene efficacy temporal.png", plot=combined_gene_eff_temporal, width=20, height=16, dpi = 600)
 ```
 
 So, it looks like there may have been significant and distinct changes in gene efficacy between our determined time points for each region except China, which did not have large changes in resistance-gene efficacy. However, We do not know if these changes in virulence over time are significant, and relevant to breeders or for changes management approach (i.e. use a different gene). Likewise, this just shows us a summary of which genes may have changed in efficacy, not how the sampled populations pathotype structure of each region has changed over time.
@@ -1099,20 +1121,28 @@ str(USA_pca_metadata)
 
 print(unique(USA_pca_metadata$time_point))
 
-USA_pcoa_plot <- ggplot(data = USA_pca_metadata, aes(x = X, y = Y)) +
+USA_pcoa_plot <- ggplot(data = USA_pca_metadata, aes(x = X, y = Y), fill=time_point) +
   geom_point(aes(colour = time_point)) +
+  scale_color_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
   xlab(paste("PcoA1 - ", round(USA_Axis1.percent,2), "%", sep = "")) +
   ylab(paste("PcoA2 - ", round(USA_Axis2.percent,2), "%", sep = "")) +
-  theme_bw() +
-  theme(
-    axis.title.x = element_text(face = "bold", size = 15),
-    axis.title.y = element_text(face = "bold", size = 15),
-    axis.text = element_text(face = "bold", size = 10),
-    legend.title = element_text(face = "bold", size = 10),
-    legend.text = element_text(face = "bold", size = 10),
-    legend.key.size = unit(1, 'lines')
-  ) +
+  theme_gray() +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
   stat_ellipse(aes(x = X, y = Y, color=time_point, group=time_point), level = 0.95) +
+  xlim(-1.0, 1.0) +
+  ylim(-0.6,0.8) +
+  labs(col="Time Frame") +
   ggtitle("USA")
 
 USA_pcoa_plot
@@ -1189,20 +1219,28 @@ head(ARG_pca_metadata)
 
 #### Plotting Argentina PCoA data
 ```{r, dpi=300}
-ARG_pcoa_plot <- ggplot(data = ARG_pca_metadata, aes(x = X, y = Y)) +
+ARG_pcoa_plot <- ggplot(data = ARG_pca_metadata, aes(x = X, y = Y), fill = time_point) +
   geom_point(aes(colour = time_point)) +
+  scale_color_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
   xlab(paste("PcoA1 - ", round(ARG_Axis1.percent,2), "%", sep = "")) +
   ylab(paste("PcoA2 - ", round(ARG_Axis2.percent,2), "%", sep = "")) +
-  theme_bw() +
-  theme(
-    axis.title.x = element_text(face = "bold", size = 15),
-    axis.title.y = element_text(face = "bold", size = 15),
-    axis.text = element_text(face = "bold", size = 10),
-    legend.title = element_text(face = "bold", size = 10),
-    legend.text = element_text(face = "bold", size = 10),
-    legend.key.size = unit(1, 'lines')
-  ) +
+  theme_gray() +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
   stat_ellipse(aes(x = X, y = Y, color=time_point, group=time_point), level = 0.95) +
+  xlim(-1.0, 1.0) +
+  ylim(-0.6,0.8) +
+  labs(col="Time Frame") +
   ggtitle("Argentina")
 
 ARG_pcoa_plot
@@ -1279,20 +1317,28 @@ head(CAN_pca_metadata)
 
 #### Plotting Canada PCoA data
 ```{r, dpi=300}
-CAN_pcoa_plot <- ggplot(data = CAN_pca_metadata, aes(x = X, y = Y)) +
+CAN_pcoa_plot <- ggplot(data = CAN_pca_metadata, aes(x = X, y = Y), fill = time_point) +
   geom_point(aes(colour = time_point)) +
+  scale_color_manual(values = c("#808080", "#FF9999")) +
   xlab(paste("PcoA1 - ", round(CAN_Axis1.percent,2), "%", sep = "")) +
   ylab(paste("PcoA2 - ", round(CAN_Axis2.percent,2), "%", sep = "")) +
-  theme_bw() +
-  theme(
-    axis.title.x = element_text(face = "bold", size = 15),
-    axis.title.y = element_text(face = "bold", size = 15),
-    axis.text = element_text(face = "bold", size = 10),
-    legend.title = element_text(face = "bold", size = 10),
-    legend.text = element_text(face = "bold", size = 10),
-    legend.key.size = unit(1, 'lines')
-  ) +
+  theme_gray() +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
   stat_ellipse(aes(x = X, y = Y, color=time_point, group=time_point), level = 0.95) +
+  xlim(-1.0, 1.0) +
+  ylim(-0.6,0.8) +
+  labs(col="Time Frame") +
   ggtitle("Canada")
 
 CAN_pcoa_plot
@@ -1369,20 +1415,28 @@ head(CHI_pca_metadata)
 
 #### Plotting China PCoA data
 ```{r, dpi=300}
-CHI_pcoa_plot <- ggplot(data = CHI_pca_metadata, aes(x = X, y = Y)) +
+CHI_pcoa_plot <- ggplot(data = CHI_pca_metadata, aes(x = X, y = Y), fill = time_point) +
   geom_point(aes(colour = time_point)) +
+  scale_color_manual(values = c("#99CCFF", "#808080")) +
   xlab(paste("PcoA1 - ", round(CHI_Axis1.percent,2), "%", sep = "")) +
   ylab(paste("PcoA2 - ", round(CHI_Axis2.percent,2), "%", sep = "")) +
-  theme_bw() +
-  theme(
-    axis.title.x = element_text(face = "bold", size = 15),
-    axis.title.y = element_text(face = "bold", size = 15),
-    axis.text = element_text(face = "bold", size = 10),
-    legend.title = element_text(face = "bold", size = 10),
-    legend.text = element_text(face = "bold", size = 10),
-    legend.key.size = unit(1, 'lines')
-  ) +
+  theme_gray() +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
   stat_ellipse(aes(x = X, y = Y, color=time_point, group=time_point), level = 0.95) +
+  xlim(-1.0, 1.0) +
+  ylim(-0.6,0.8) +
+  labs(col="Time Frame") +
   ggtitle("China")
 
 CHI_pcoa_plot
@@ -1397,6 +1451,7 @@ CHI_pcoa_plot
 combined_PCOA_temporal <- plot_grid(ARG_pcoa_plot,CAN_pcoa_plot,CHI_pcoa_plot,USA_pcoa_plot)
 combined_PCOA_temporal
 
+ggsave("combined PCoA temporal.png", plot=combined_PCOA_temporal, width=20, height=16, dpi = 600)
 ```
 
 Differences in _P. sojae_ populations pathotype complexity over time were apparent, the populations pathotype structure/composition overall (as shown with 95% data ellipses) were not as apparent. However, this does not mean that the populations pathotype structure between these timepoints are not different. 
@@ -1795,29 +1850,32 @@ USA_timepoint_study_gene_summary <- USA_final_data %>%
 
 USA_timepoint_study_gene_summary$year <- sub("-", "_", USA_timepoint_study_gene_summary$year)
 
-USA_RPS_overtime <- ggplot(USA_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic)) +
+USA_RPS_overtime <- ggplot(USA_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic), fill = time_point) +
   facet_wrap(vars(Rps)) +
   geom_point(aes(colour = factor(time_point))) +
+  scale_color_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
   geom_smooth(method=lm) +
+  theme_gray() +
   geom_hline(yintercept=40, linetype="dashed", color = "red") +
-  theme(axis.text.x = element_blank(),
-                     axis.text.y = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.x = element_blank(),
-                     axis.title.y = element_text(size = 15, face = "bold", family = "serif"),
+  theme(#axis.text.x = element_blank(),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     #axis.title.x = element_blank(),
+                     axis.title.y = element_blank(),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                      axis.ticks.x = element_blank(),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                      #axis.ticks.x = element_blank(),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
                      legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
                       ggtitle("USA") +
                   stat_cor(method = "pearson", label.x = 1, label.y = 90) +
                   #xlim(1,3)  +
                   ylim(0,100) +
-                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Point")
+                  scale_x_continuous(name = "Year Sampled", breaks = c(1, 9, 12, 16), labels = c("1990", "2001", "2013", "2018")) +
+                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Frame")
 
 USA_RPS_overtime
 
@@ -1831,29 +1889,32 @@ ARG_timepoint_study_gene_summary <- ARG_final_data %>%
   summarize(N_pathogenic=sum(Susceptible.1),
             perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100)) # percent efficacy by gene, within studies, while still retaining timepoint. 
 
-ARG_RPS_overtime <-ggplot(ARG_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic)) +
+ARG_RPS_overtime <-ggplot(ARG_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic), fill = time_point) +
   facet_wrap(vars(Rps)) +
   geom_point(aes(colour = factor(time_point))) +
+  scale_color_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
   geom_smooth(method=lm) +
+  theme_gray() +
   geom_hline(yintercept=40, linetype="dashed", color = "red") +
-  theme(axis.text.x = element_blank(),
-                     axis.text.y = element_text(size = 10, face = "bold", family = "serif"),
+  theme(#axis.text.x = element_blank(),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
                      axis.title.x = element_blank(),
-                     axis.title.y = element_text(size = 15, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                      axis.ticks.x = element_blank(),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                      #axis.ticks.x = element_blank(),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
                      legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
                       ggtitle("Argentina") +
                   stat_cor(method = "pearson", label.x = 1, label.y = 90) +
                   #xlim(1,3)  +
                   ylim(0,100) +
-                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Point")
+                  scale_x_continuous(name = "Year Sampled", breaks = c(1, 4, 8, 13), labels = c("1989", "2000", "2013", "2015")) +
+                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Frame")
 
 ARG_RPS_overtime
 
@@ -1868,29 +1929,32 @@ CAN_timepoint_study_gene_summary <- CAN_final_data %>%
   summarize(N_pathogenic=sum(Susceptible.1),
             perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100)) # percent efficacy by gene, within studies, while still retaining timepoint. 
 
-CAN_RPS_overtime <-ggplot(CAN_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic)) +
+CAN_RPS_overtime <-ggplot(CAN_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic), fill = time_point) +
   facet_wrap(vars(Rps)) +
   geom_point(aes(colour = factor(time_point))) +
+  scale_color_manual(values = c("#808080", "#FF9999")) +
   geom_smooth(method=lm) +
+  theme_gray() +
   geom_hline(yintercept=40, linetype="dashed", color = "red") +
-  theme(axis.text.x = element_blank(),
-                     axis.text.y = element_text(size = 10, face = "bold", family = "serif"),
+  theme(#axis.text.x = element_blank(),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
                      axis.title.x = element_blank(),
-                     axis.title.y = element_text(size = 15, face = "bold", family = "serif"),
+                     axis.title.y = element_blank(),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                      axis.ticks.x = element_blank(),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     # axis.ticks.x = element_blank(),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
                      legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
                       ggtitle("Canada") +
                   stat_cor(method = "pearson", label.x = 1, label.y = 90) +
                   #xlim(1,3)  +
                   ylim(0,100) +
-                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Point")
+                  scale_x_continuous(name = "Year Sampled", breaks = c(1, 4, 7), labels = c("2010", "2014", "2019")) +
+                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Frame")
 
 CAN_RPS_overtime
 
@@ -1904,29 +1968,32 @@ CHI_timepoint_study_gene_summary <- CHI_final_data %>%
   summarize(N_pathogenic=sum(Susceptible.1),
             perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100)) # percent efficacy by gene, within studies, while still retaining timepoint. 
 
-CHI_RPS_overtime <-ggplot(CHI_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic)) +
+CHI_RPS_overtime <-ggplot(CHI_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic), fill = time_point) +
   facet_wrap(vars(Rps)) +
   geom_point(aes(colour = factor(time_point))) +
+  scale_color_manual(values = c("#99CCFF", "#808080")) +
   geom_smooth(method=lm) +
+  theme_gray() +
   geom_hline(yintercept=40, linetype="dashed", color = "red") +
-  theme(axis.text.x = element_blank(),
-                     axis.text.y = element_text(size = 10, face = "bold", family = "serif"),
-                     axis.title.x = element_blank(),
-                     axis.title.y = element_text(size = 15, face = "bold", family = "serif"),
+  theme(#axis.text.x = element_blank(),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     #axis.title.x = element_blank(),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
                      axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
                      axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
-                      axis.ticks.x = element_blank(),
-                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     # axis.ticks.x = element_blank(),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
                      legend.key = element_blank(),
-                     legend.title = element_text(size = 10, face="bold", family = "serif"),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
                      legend.position = "right",
-                     strip.text.x = element_text(size = 15, face = "bold", family = "serif"),
-                     title = element_text(size = 16, family = "serif")) +
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
                       ggtitle("China") +
                   stat_cor(method = "pearson", label.x = 1, label.y = 90) +
                   #xlim(1,3)  +
                   ylim(0,100) +
-                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Point")
+                  scale_x_continuous(name = "Year Sampled", breaks = c(1, 6, 13), labels = c("1990", "2000", "2013")) +
+                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Frame")
 
 CHI_RPS_overtime
 
@@ -1935,5 +2002,7 @@ CHI_RPS_overtime
 combined
 ```{r, dpi=600}
 combined_rpseff_overtime <- plot_grid(ARG_RPS_overtime,CAN_RPS_overtime, CHI_RPS_overtime, USA_RPS_overtime)
+combined_rpseff_overtime
+
 ggsave("combined rps eff over time40.png", plot=combined_rpseff_overtime, width=20, height=16, dpi = 600)
 ```
