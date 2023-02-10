@@ -7,7 +7,8 @@ output: html_document
 
 ```{r}
 #library(renv)
-renv::activate()
+#renv::deactivate()
+#renv::activate()
 ```
 
 #Loading in the specific pakcage versions needed for reproducible analysis. Format = renv::install("PACKAGE@V.ERS.ION")
@@ -17,18 +18,18 @@ renv::activate()
 #renv::install("adegenet@2.1.4")
 #renv::install("tidyverse@1.3.1")
 #renv::install("DT@0.19")
-#renv::install("hagis@3.1.2.9000")
+#renv::install("hagis@3.1.4")
 #renv::install("pander@0.6.4")
 #renv::install("vegan@2.4-3")
-#renv::install("ape@5.3") #closest to 5.2-6 I can get, previously used 5.6-2
-#renv::install("ggsigniff@0.6.3")
+#renv::install("ape@5.6-2") 
+#renv::install("ggsigniff@0.6.3") installed with ggpubr, not needed here
 #renv::install("cowplot@1.1.1")
 #renv::install("ellipse@0.4.2")
 #renv::install("BiocManager")
 #renv::settings$bioconductor.version("3.13")
 #BiocManager::install('mixOmics') # If something besides the permanova bugs out now, its likely this package. lots of dependables. maybe look into if we can find another version closer to RVAide
 #BiocManager::install("BiocVersion")
-#renv::install("RVAideMemoire@0.9-81-2")
+#renv::install("RVAideMemoire@0.9-81-2") # not installing due to mixomics
 #renv::install("ggpubr@0.4.0")
 #renv::install("here@1.0.1")
 #renv::install("sf@1.0-2")
@@ -57,7 +58,7 @@ Therefore, the objectives of this study are:
 ------------
 
 ###### Packages (R version: 4.1.1) needed for data exploration and analysis. version indicates the versions that we loaded
-```{r, echo=TRUE, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 
 library(openxlsx) #v4.2.4
 library(plyr) #v1.8.6
@@ -71,7 +72,7 @@ library(ape) #v5.2-6
 library(ggsignif) #v0.6.3
 library(cowplot) #v1.1.1
 library(ellipse) #v0.4.2
-library(RVAideMemoire) #v0.9-81-2
+#library(RVAideMemoire) #v0.9-81-2
 library(ggpubr) #v0.4.0
 library(here) #v1.0.1
 library(sf) #v1.0-2
@@ -1118,7 +1119,7 @@ USA_vir_jaccard <- vegdist(USA_vir_matrix, "jaccard", na.rm = TRUE)
 #USA_vir_pcoa <- cmdscale(USA_vir_jaccard, eig = TRUE) # this is the PCoA, using the stats package instead of ape as ape was throwing errors with our large dataset.
 #test <- pcoscaled(USA_vir_jaccard)
 USA_pca <- pcoa(USA_vir_jaccard)
-#plot( )
+
 # calculate the percentage of variation that each Principle Coordinate accounts for
 USA_Axis1.percent <- USA_pca$values$Relative_eig[[1]]*100 # Dimension (Axis 1 (PcoA1)) 42.10312%
 USA_Axis2.percent <- USA_pca$values$Relative_eig[[2]]*100 # Dimension (Axis 2 (PcoA2)) 21.40556%
@@ -1550,7 +1551,7 @@ USA_patho_perma <- adonis(unname(t_USA_vir_jaccard) ~ USA_groups)
 
 USA_patho_perma
 
-USA_patho_pair_perma <- pairwise.perm.manova(as.matrix(t_USA_vir_jaccard), USA_groups, test= c("Wilks"), nperm = 99, progress = TRUE, R2=TRUE)
+USA_patho_pair_perma <- pairwise.perm.manova(as.matrix(t_USA_vir_jaccard), USA_groups, nperm = 999, progress = TRUE, R2=TRUE)
 
 USA_patho_pair_perma
 
@@ -1833,7 +1834,7 @@ CHI_patho_pair_perma$R2.value
 ```{r}
 # DAPC Analysis #
 length(CHI_vir_matrix)
-length(CHI_vir_matrix2)
+
 set.seed(999)
 # using xvalDapc to identify the number of PC to retain
 CHI_vir_matrix2 <- na.omit(CHI_vir_matrix) # remove NAs, if present
