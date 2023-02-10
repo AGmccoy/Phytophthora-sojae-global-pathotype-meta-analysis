@@ -2,6 +2,8 @@
 
 Austin McCoy
 
+[![DOI](https://zenodo.org/badge/409566367.svg)](https://zenodo.org/badge/latestdoi/409566367)
+
 ### Pathotype database summary table
 
 * [Pathotype summary table](./README.Rmd)
