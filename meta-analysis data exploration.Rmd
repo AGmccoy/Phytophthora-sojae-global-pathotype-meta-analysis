@@ -1,0 +1,2008 @@
+---
+title: "P. sojae meta analysis"
+author: "Austin McCoy"
+date: "`r format(Sys.time(), '%B %d %Y')`"
+output: 
+  html_document:
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Objectives
+Single-gene resistance to _Phytophthora sojae_ is the most economic form of resistance, and can completely protect plants from infection all season if the gene used is effective against the pathogen population. Since the first report of _Phytophthora sojae_ in Indiana in 1948 (Kaufmann and Gerdmann 1958) many pathotype surveys have been conducted to determine effective resistance genes for _P. sojae_ management. Nearly all surveys noted that the pathogen populations were very diverse and typically no single resistance gene could protect against all identified pathotypes. Likewise, upon subsequent sampling of the same soybean growing areas, an increase in average pathotype complexity (or how many genes, on average, an isolate from the sampled population could cause disease on) was observed in most locations. Currently, the most deployed resistance genes in North America are the Rps1c and Rps1k genes, and to some extent Rps1a, Rps3a, and Rps6. Most recent pathotype surveys in North America have noted a marked increase in virulence on the Rps1c and Rps1k genes primarily used for management. 
+
+Therefore, the objectives of this study are:
+
+* Identify regional virulence trends to aid breeding efforts
+    * Significant changes in complexity, as well as effective resistance genes over time (i.e. loss of Rps1c and Rps1k for resistance in North America)
+
+* Identify how _P. sojae_ populations pathotype structure/composition have changed over time in North America, Argentina, and China
+    * Compare pathotype diversity within country by timepoint
+    
+
+------------
+
+###### Packages (R version: 4.1.1) needed for data exploration and analysis
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+
+library(openxlsx) #v4.2.4
+library(plyr) #v1.8.6
+library(adegenet) #v2.1.4
+library(tidyverse) #v1.3.1
+library(DT) #v0.19
+library(hagis) #v3.1.2.9000
+library(pander) #v0.6.4
+library(vegan) #v2.5-7 (will need to go back to v2.4-3 for 'adonis' functionality in RVAideMemoire's "pairwise.perm.manova.()" code. Currently throws error in pairwise permanova since adonis() has been depreciated for adonis2() in vegan. However, the analysis has already been done. need to get this fixed for submission.
+library(ape) #v5.2-6
+library(ggsignif) #v0.6.3
+library(cowplot) #v1.1.1
+library(ellipse) #v0.4.2
+library(RVAideMemoire) #v0.9-81-2
+library(ggpubr) #v0.4.0
+library(here) #v1.0.1
+library(sf) #v1.0-2
+library(readxl) #v1.3.1
+```
+
+###Reading in the various studies data
+```{r, echo=TRUE, warning=FALSE}
+path_to_file <- "./pathotype surveys data.xlsx" # path to the file with all the pathotype data in it
+sheet_names <- openxlsx::getSheetNames(path_to_file) # acquiring sheet names, i.e. each studies name for the data found in each sheet
+pathotype_data <- lapply(sheet_names, openxlsx::read.xlsx, xlsxFile=path_to_file) #acquiring the pathotype data from each sheet
+names(pathotype_data) <- sheet_names # adding the sheets names to each sheet
+#pathotype_data # lets see what it looks like, ~80k entries, not a good idea
+```
+
+Removing the data.frames which do not have pathotype data, so we just have study data to work with (i.e. surveys summary, Rps gene introduction dates, soybean differentials info, number strings for isolate name). This "list" will need to be updated if any new non-data sheets are added. Simply add the sheet name to be removed to the list, and it will be removed.
+```{r}
+pathotype_data[c("surveys summary","Rps gene introduction dates", "soybean differentials info", "number strings for isolate name")]=NULL
+
+```
+
+Combining the list of data.frames into one data.frame and renaming the new column ".id" to "study"
+```{r}
+pathotype_data_combined <- ldply(pathotype_data, rbind) # combining each data.frame
+names(pathotype_data_combined)[names(pathotype_data_combined)==".id"] <- "study" # renaming the new ".id" column to "study"
+#pathotype_data_combined # lets take an updated look at the data structure, ~80k entries, still not a good idea
+```
+
+OK, now we have all of the pathotype studies data in one data.frame. This will be updated whenever a new study is added to the excel sheet and this .Rmd file re-run, with no additional effort. The only caveat is if another excel sheet is added which needs to be removed. This excel sheet name will need to be included in the list within the chunk for "removing data.frames which do not have pathotype data".
+
+
+Lets take a look at the state/province, country, and years we have to work with in this interactive table
+```{r}
+
+study_state_prov_country_year <- unique(pathotype_data_combined[c("study","state_prov", "country", "year")]) # looking at the unique values for state/province, country and year by study
+datatable(study_state_prov_country_year, rownames = FALSE, class = 'cell-border stripe', filter="top", options = list(pageLength = 5, scrollX=T, editable=FALSE) )
+
+```
+This information will be helpful in making a timeline of pathotype studies conducted. We have `r length(study_state_prov_country_year$study)` timepoints from the `r length(unique(study_state_prov_country_year$study))` studies we are using
+
+This is very informative, but a lot to look at. Lets break it down just by country and year to see if that makes it easier to look at/interpret. Again, using an interactive table.
+
+```{r}
+country_year <- unique(pathotype_data_combined[c("country", "year")]) # looking at the unique values for country and year 
+datatable(country_year, rownames = FALSE, class = 'cell-border stripe', filter="top", options = list(pageLength = 5, scrollX=T, editable=FALSE) )
+```
+```{r}
+database_all_countries <- unique(pathotype_data_combined$country)
+  database_all_countries
+databse_total_isolates <- length(unique(pathotype_data_combined$Isolate))
+databse_total_isolates
+database_total_studies <- unique(pathotype_data_combined$study)
+database_total_studies
+
+```
+
+Now that we have an idea of the timeline of our sampling, lets calculate pathotype complexity by study so we can do analyses downstream looking at changes in pathotype complexity over time.
+Remember, this is using all of the genes tested in each study. for downstream analysis/visualization we may sub-sample down to only the widely deployed genes (Rps1a, Rps1c, Rps1k, Rps3a, Rps6).
+
+To summarise the pathotype complexity of each isolate and study, we will use the _hagis_ R package, for which we will need to set up the arguments used in _hagis_.
+```{r}
+hagis_args <- list(
+  x = pathotype_data_combined,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1" 
+  
+)
+
+#trying to get an average complexity output for each study
+
+isolate_metadata <- pathotype_data_combined[c("Isolate","study" , "country", "year" )]
+
+#complexity_by_study
+complexity <- do.call(calculate_complexities, hagis_args) # this assigns complexity to each isolate but does not group by study
+isolate_complexity <- complexity$indvidual_complexities # taking individual isolates data, not data summarized by complexity
+names(isolate_complexity)[names(isolate_complexity)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+names(isolate_complexity)[names(isolate_complexity)=="N_samp"] <- "path_comp" # renaming columns so we can merge data.frames 
+isolate_complexity_metadata <- merge(isolate_complexity, isolate_metadata, by.x = c("Isolate"), by.y = c("Isolate"), all=F) # merging metadata and the complexity data
+isolate_complexity_metadata # merged data.frame
+
+study_mean_complexity <- isolate_complexity_metadata %>%
+  group_by(study, country) %>%
+  mutate() %>%
+  summarize(mean_comp=mean(path_comp),
+            sd_comp=sd(path_comp),
+            study_n=length(unique(Isolate)))
+   # this will give us the mean and standard deviation for pathotype complexities, as well as number of isolates tested by study. 
+
+pander(study_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
+```
+
+Complexity is very helpful in understanding HOW MANY genes a isolate or sampled population can overcome, however, knowing WHICH genes are not effective to manage _Phytophthora sojae_ is still needed.
+
+
+Virulence of sampled population on each tested Rps gene, by study, presented in an interactive table
+```{r}
+study_gene_summary <- pathotype_data_combined %>%
+  group_by(study, Rps) %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
+# this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
+
+datatable(study_gene_summary, rownames = FALSE, class = 'cell-border stripe', filter="top", options = list(pageLength = 5, scrollX=T, editable=FALSE) )
+
+```
+
+----------
+
+## Data Preparation
+
+Looking at the sampling dates for each study we can identify which studies will be appropriate to group together and investigate virulence changes over time for this meta-analysis. There are, of course, some studies which we will not be able to use. 
+
+#### Selection of time points was done based on the year samples were collected and not the year the study was published.
+
+Based on the study data we have, it looks like we can investigate changes in virulence over the course of 3 timepoints For the U.S. and Argentina (1990-1999, 2000-2013, and 2014-2019 ), and 2 timepoints for Canada and China (2000-2013, 2014-2019).The 2014-2019 timepoint would represent the most recent data available for _Phytophthora sojae_ pathotype surveys.
+
+We now have summary data for pathotype complexity and virulence on each gene tested, by study. Next, lets take the timepoints that we have defined above, and look at the data temporally in the United States and South America (Argentina)(1990-1999, 2000-2013, 2014-2019), as well as Canada and Asia (China)(2000-2013, 2014-2019). (i.e. what we are actually interested in looking at)
+
+----------
+
+### Selection of Rps genes to use for this study
+
+To make sure we are making accurate comparisons, we need to subsample down to only the genes which were used in all analyses. We are going to only take the data for the 8 differentials used originally for race typing isolates (), and not the expanded 14 differential set since the additional 6 genes were not tested in past surveys. Those genes are: rps, Rps1a, Rps1b, Rps1c, Rps1d, Rps1k, Rps3a, Rps6, and Rps7. 
+
+```{r}
+rps_subset <- c("rps","1a","1b","1c","1d","1k","3a","6","7") # Rps genes we want to use for analyses
+
+pathotype_data_combined_s9 <- pathotype_data_combined %>%
+  subset(., Rps %in% rps_subset) # this will subset the combined dataset so that only the Rps genes we want to use in analyses will be present. All other isolate/gene phenotype data is discarded.
+
+unique(pathotype_data_combined_s9$Rps) # double checking that only the isolates we want are in the subsetted dataset.
+
+```
+
+----------
+
+#### USA timepoints (1990-1999, 2000-2013, 2013-2019)
+
+```{r}
+# USA 1990-1999 data
+USA_1990_1999 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 1990-1999 in the USA
+  subset(country=="USA") %>%
+  subset(year>=1990 & year<= 1999) %>%
+  add_column(time_point="1990_1999", .after="study")
+
+
+
+unique(USA_1990_1999$study) # double checking the correct studies were subset
+unique(USA_1990_1999$year) # double checking our subsetting of years was correct
+USA_1990_1999_isolates <- length(unique(USA_1990_1999$Isolate)) # number of isolates we have for this time point
+USA_1990_1999_isolates 
+
+# USA 2000-2013
+
+USA_2000_2013 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 2000-2013 in the USA
+  subset(country=="USA") %>%
+  subset(year>=2000 & year<= 2013) %>%
+  add_column(time_point="2000_2013", .after="study")
+
+unique(USA_2000_2013$study)
+unique(USA_2000_2013$year)
+USA_2000_2013_isolates <- length(unique(USA_2000_2013$Isolate))  
+USA_2000_2013_isolates
+
+# USA 2013-2019
+
+USA_2013_2019 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 2013-2019 in the USA
+  subset(country=="USA") %>%
+  subset(year>=2013 & year<= 2019) %>%
+  add_column(time_point="2013_2019", .after="study") 
+
+unique(USA_2013_2019$study)
+unique(USA_2013_2019$year)
+USA_2013_2019_isolates <- length(unique(USA_2013_2019$Isolate))  
+USA_2013_2019_isolates
+
+USA_final_data <- rbind(USA_1990_1999,USA_2000_2013,USA_2013_2019)
+
+```
+
+---------
+
+### Argentina timepoints (1989-1999, 2000-2012, 2013-2019)
+
+```{r}
+# Argentina 1989-1999 data
+ARG_1989_1999 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 1990-1999 in Argentina
+  subset(country=="Argentina") %>%
+  subset(year>=1989 & year<= 1999) %>%
+  add_column(time_point="1989_1999", .after="study") 
+
+unique(ARG_1989_1999$study) # double checking the correct studies were subset
+unique(ARG_1989_1999$year) # double checking our subsetting of years was correct
+ARG_1989_1999_isolates <- length(unique(ARG_1989_1999$Isolate)) # number of isolates we have for this time point
+ARG_1989_1999_isolates
+
+
+# Argentina 2000-2012 data
+ARG_2000_2012 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 2000-2013 in Argentina
+  subset(country=="Argentina") %>%
+  subset(year>=2000 & year<= 2012)  %>%
+  add_column(time_point="2000_2012", .after="study")
+
+unique(ARG_2000_2012$study)
+unique(ARG_2000_2012$year)
+ARG_2000_2012_isolates <- length(unique(ARG_2000_2012$Isolate))  
+ARG_2000_2012_isolates
+
+# Argentina 2013-2019 data
+ARG_2013_2019 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 2013-2019 in Argentina
+  subset(country=="Argentina") %>%
+  subset(year>=2013 & year<= 2019) %>%
+  add_column(time_point="2013_2019", .after="study")
+
+unique(ARG_2013_2019$study)
+unique(ARG_2013_2019$year)
+ARG_2013_2019_isolates <- length(unique(ARG_2013_2019$Isolate))  
+ARG_2013_2019_isolates
+
+
+ARG_final_data <- rbind(ARG_1989_1999,ARG_2000_2012,ARG_2013_2019)
+
+ 
+```
+
+------------
+
+### Canada timepoints (2000-2013, 2014-2019)
+```{r}
+# Canada 2000-2013 data
+CAN_2000_2013 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 2000-2013 in Canada
+  subset(country=="Canada") %>%
+  subset(year>=2000 & year<= 2013) %>%
+  add_column(time_point="2000_2013", .after="study")
+
+unique(CAN_2000_2013$study)
+unique(CAN_2000_2013$year)
+CAN_2000_2013_isolates <- length(unique(CAN_2000_2013$Isolate))  
+CAN_2000_2013_isolates
+
+# Canada 2014-2019 data
+CAN_2014_2019 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 2013-2019 in Canada
+  subset(country=="Canada") %>%
+  subset(year>=2014 & year<= 2019) %>%
+  add_column(time_point="2014_2019", .after="study")
+
+unique(CAN_2014_2019$study)
+unique(CAN_2014_2019$year)
+CAN_2014_2019_isolates <- length(unique(CAN_2014_2019$Isolate))  
+CAN_2014_2019_isolates
+
+CAN_final_data <- rbind(CAN_2000_2013,CAN_2014_2019)
+
+CAN_final_data <- CAN_final_data %>%
+  subset(Rps!="7") # Removing Rps7 as Tremblay molecular tool did not test this Avr loci, making sure comparisons between timepoints are accurate!
+
+```
+
+-----------
+
+### China timepoints (1990-1999, 2000-2013)
+```{r}
+CHI_1990_1999 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 1990-1999 in China
+  subset(country=="China") %>%
+  subset(year>=1990 & year<= 1999) %>%
+  add_column(time_point="1990_1999", .after="study") 
+
+unique(CHI_1990_1999$study) # double checking the correct studies were subset
+unique(CHI_1990_1999$year) # double checking our subsetting of years was correct
+CHI_1990_1999_isolates <- length(unique(CHI_1990_1999$Isolate)) # number of isolates we have for this time point
+CHI_1990_1999_isolates
+
+CHINA_2000_2013 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 2000-2013 in China
+  subset(country=="China") %>%
+  subset(year>=2000 & year<= 2013) %>%
+  add_column(time_point="2000_2013", .after="study")
+
+unique(CHINA_2000_2013$study)
+unique(CHINA_2000_2013$year)
+CHINA_2000_2013_isolates <- length(unique(CHINA_2000_2013$Isolate))  
+CHINA_2000_2013_isolates
+
+CHINA_2014_2019 <- pathotype_data_combined_s9 %>% # gathering all isolate data for the years 2013-2019 in Canada
+  subset(country=="China") %>%
+  subset(year>=2014 & year<= 2019) %>%
+  add_column(time_point="2014_2019", .after="study")
+
+unique(CHINA_2014_2019$study)
+unique(CHINA_2014_2019$year)
+CHINA_2014_2019_isolates <- length(unique(CHINA_2014_2019$Isolate))  
+CHINA_2014_2019_isolates
+
+CHI_final_data <- rbind(CHI_1990_1999,CHINA_2000_2013,CHINA_2014_2019)
+
+```
+
+We now have our dataset organized by time points (1990-1999, 2000-2013, and 2014-2019) for each of the geographic locations we will be looking at (U.S.A., Canada, Argentina and China), with only the genes (and susceptible control) tested across all studies: `r unique(pathotype_data_combined_s9$Rps)`.
+
+------------
+
+## Data Analysis
+
+A reminder, the objectives of this study are:
+
+* Identify how pathotypes have changed over time in North America, Argentina, and China
+    * Significant changes in complexity, as well as effective resistance genes over time (i.e. loss of Rps1c and Rps1k for resistance in North America? Just certain areas?)
+    
+* Identify regional virulence trends to aid breeding efforts
+    * Compare pathotype diversity between states/provinces and countries
+    
+### Temporal Comparison of Pathotype Complexity
+
+####  USA
+
+```{r, dpi=300}
+USA_hagis_args <- list(
+  x = USA_final_data,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1" 
+  
+)
+
+USA_isolate_metadata <- USA_final_data[c("Isolate","study" , "year","time_point" )]
+
+USA_complexity <- do.call(calculate_complexities, USA_hagis_args)
+USA_isolate_complexity <- USA_complexity$indvidual_complexities # taking individual isolates data, not data summarized by complexity
+names(USA_isolate_complexity)[names(USA_isolate_complexity)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+names(USA_isolate_complexity)[names(USA_isolate_complexity)=="N_samp"] <- "path_comp" # renaming columns so we can merge data.frames 
+USA_isolate_complexity_metadata <- merge(USA_isolate_complexity, USA_isolate_metadata, by.x = c("Isolate"), by.y = c("Isolate"), all=F) # merging metadata and the complexity data
+USA_isolate_complexity_metadata
+
+USA_timepoints_mean_complexity <- USA_isolate_complexity_metadata %>%
+  group_by(time_point) %>%
+  mutate() %>%
+  summarize(mean_comp=mean(path_comp),
+            sd_comp=sd(path_comp),
+            n=length(unique(Isolate)))
+   # this will give us the mean and standard deviation for pathotype complexities, as well as number of isolates tested by time point. 
+
+pander(USA_timepoints_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
+
+# Lets look at this data using a boxplot
+USA_complexity_box <- ggplot(USA_isolate_complexity_metadata, aes(x=time_point, y=path_comp, fill = time_point)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  coord_flip() +
+  theme_gray() +
+  stat_summary(fun.y=mean, geom="point", shape=20, size=3, color="black", fill="black") +
+  geom_signif(comparisons = list(c("1990_1999", "2000_2013"),c("1990_1999", "2013_2019"),c("2000_2013","2013_2019")), 
+              test = "t.test",
+              map_signif_level = TRUE) + 
+theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_blank(),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_blank(),
+                     legend.key = element_blank(),
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ylim(0,10) +
+  xlab("Time Frame") + ylab("Pathotype Complexity")+
+  ggtitle("USA")
+USA_complexity_box # looks like there was an increase in pathotype complexity at the latest timepoint, as compared to the 1990-1999 and 2000-2013 timepoints. But we dont know if they are significant or not, so lets test that next.
+
+# testing significance between USA timepoints pathotype complexity - Welchs t.test
+# Just to double check the significance tested and applied in ggpplot-ggsignif
+
+# between 1990-1999 and 2000-2013 timepoints
+USA_complexity_data_90_99_00_13 <- USA_isolate_complexity_metadata %>%
+  subset(time_point!="2013_2019")
+USA_sig_90_99_00_13 <- t.test(path_comp~time_point, data = USA_complexity_data_90_99_00_13)
+USA_sig_90_99_00_13
+
+# between 1990-1999 and 2014-2019 timepoints
+USA_complexity_data_90_99_14_19 <- USA_isolate_complexity_metadata %>%
+  subset(time_point!="2000_2013")
+USA_sig_90_99_14_19 <- t.test(path_comp~time_point, data = USA_complexity_data_90_99_14_19)
+USA_sig_90_99_14_19
+
+# between 2000-2013 and 2014-2019 timepoints
+USA_complexity_data_00_13_14_19 <- USA_isolate_complexity_metadata %>%
+  subset(time_point!="1990_1999")
+USA_sig_00_13_14_19 <- t.test(path_comp~time_point, data = USA_complexity_data_00_13_14_19)
+USA_sig_00_13_14_19
+
+
+```
+
+#### Argentina
+
+```{r, dpi=300}
+ARG_hagis_args <- list(
+  x = ARG_final_data,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1" 
+  
+)
+
+ARG_isolate_metadata <- ARG_final_data[c("Isolate","study" , "year","time_point" )]
+
+ARG_complexity <- do.call(calculate_complexities, ARG_hagis_args)
+ARG_isolate_complexity <- ARG_complexity$indvidual_complexities # taking individual isolates data, not data summarized by complexity
+names(ARG_isolate_complexity)[names(ARG_isolate_complexity)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+names(ARG_isolate_complexity)[names(ARG_isolate_complexity)=="N_samp"] <- "path_comp" # renaming columns so we can merge data.frames 
+ARG_isolate_complexity_metadata <- merge(ARG_isolate_complexity, ARG_isolate_metadata, by.x = c("Isolate"), by.y = c("Isolate"), all=F) # merging metadata and the complexity data
+ARG_isolate_complexity_metadata
+
+ARG_timepoints_mean_complexity <- ARG_isolate_complexity_metadata %>%
+  group_by(time_point) %>%
+  mutate() %>%
+  summarize(mean_comp=mean(path_comp),
+            sd_comp=sd(path_comp),
+            n=length(unique(Isolate))) # this will give us the mean and standard deviation for pathotype complexities, as well as number of isolates tested by time point. 
+
+pander(ARG_timepoints_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
+
+# Lets look at this data using a boxplot
+ARG_complexity_box <- ggplot(ARG_isolate_complexity_metadata, aes(x=time_point, y=path_comp, fill = time_point)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  coord_flip() +
+  theme_gray() +
+  stat_summary(fun.y=mean, geom="point", shape=20, size=3, color="black", fill="black") +
+  geom_signif(comparisons = list(c("1989_1999", "2000_2012"),c("1989_1999", "2013_2019"),c("2000_2012","2013_2019")), 
+              test = "t.test",
+              map_signif_level = TRUE) +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_blank(),
+                     legend.key = element_blank(),
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ylim(0,10) +
+  xlab("Time Frame") + ylab("Pathotype Complexity")+
+  ggtitle("Argentina")
+ARG_complexity_box # looks like there was an increase in pathotype complexity at the latest timepoint, as compared to the 1990-1999 and 2000-2013 timepoints. But we dont know if they are significant or not, so lets test that next.
+
+# testing significance between Argentina timepoints pathotype complexity - Welchs t.test
+
+# between 1989-1999 and 2000-2012 timepoints
+ARG_complexity_data_89_99_00_12 <- ARG_isolate_complexity_metadata %>%
+  subset(time_point!="2013_2019")
+ARG_sig_89_99_00_12 <- t.test(path_comp~time_point, data = ARG_complexity_data_89_99_00_12)
+ARG_sig_89_99_00_12
+
+# between 1989-1999 and 2013-2019 timepoints
+ARG_complexity_data_89_99_13_19 <- ARG_isolate_complexity_metadata %>%
+  subset(time_point!="2000_2012")
+ARG_sig_89_99_13_19 <- t.test(path_comp~time_point, data = ARG_complexity_data_89_99_13_19)
+ARG_sig_89_99_13_19
+
+# between 2000-2012 and 2013-2019 timepoints
+ARG_complexity_data_00_12_13_19 <- ARG_isolate_complexity_metadata %>%
+  subset(time_point!="1989_1999")
+ARG_sig_00_12_13_19 <- t.test(path_comp~time_point, data = ARG_complexity_data_00_12_13_19)
+ARG_sig_00_12_13_19
+
+```
+
+#### Canada
+
+```{r, dpi=300}
+CAN_hagis_args <- list(
+  x = CAN_final_data,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1" 
+  
+)
+
+CAN_isolate_metadata <- CAN_final_data[c("Isolate","study" , "year","time_point" )]
+
+CAN_complexity <- do.call(calculate_complexities, CAN_hagis_args)
+CAN_isolate_complexity <- CAN_complexity$indvidual_complexities # taking individual isolates data, not data summarized by complexity
+names(CAN_isolate_complexity)[names(CAN_isolate_complexity)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+names(CAN_isolate_complexity)[names(CAN_isolate_complexity)=="N_samp"] <- "path_comp" # renaming columns so we can merge data.frames 
+CAN_isolate_complexity_metadata <- merge(CAN_isolate_complexity, CAN_isolate_metadata, by.x = c("Isolate"), by.y = c("Isolate"), all=F) # merging metadata and the complexity data
+CAN_isolate_complexity_metadata
+
+CAN_timepoints_mean_complexity <- CAN_isolate_complexity_metadata %>%
+  group_by(time_point) %>%
+  mutate() %>%
+  summarize(mean_comp=mean(path_comp),
+            sd_comp=sd(path_comp),
+            n=length(unique(Isolate))) # this will give us the mean and standard deviation for pathotype complexities, as well as number of isolates tested by time point. 
+
+pander(CAN_timepoints_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
+
+# Lets look at this data using a boxplot
+CAN_complexity_box <- ggplot(CAN_isolate_complexity_metadata, aes(x=time_point, y=path_comp, fill = time_point)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("#808080", "#FF9999")) +
+  coord_flip() +
+  theme_gray() +
+  stat_summary(fun.y=mean, geom="point", shape=20, size=3, color="black", fill="black") +
+  geom_signif(comparisons = list(c("2000_2013","2014_2019")), 
+              test = "t.test",
+              map_signif_level = TRUE) +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_blank(),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ylim(0,10) +
+  xlab("Time Frame") + ylab("Pathotype Complexity")+
+  ggtitle("Canada")
+CAN_complexity_box # looks like there was a slight decrease in pathotype complexity at the latest timepoint, as compared to the 2000-2013 timepoint. But we dont know if they are significant or not, so lets test that next.
+
+# testing significance between Canada timepoints pathotype complexity - Welchs t.test
+
+# between 1990-1999 and 2000-2013 timepoints
+#CAN_complexity_data_90_99_00_13 <- CAN_isolate_complexity_metadata %>%
+#  subset(time_point!="2014_2019")
+#CAN_sig_90_99_00_13 <- t.test(path_comp~time_point, data = CAN_complexity_data_90_99_00_13)
+#CAN_sig_90_99_00_13
+
+# between 1990-1999 and 2014-2019 timepoints
+#CAN_complexity_data_90_99_14_19 <- CAN_isolate_complexity_metadata %>%
+#  subset(time_point!="2000_2013")
+#CAN_sig_90_99_14_19 <- t.test(path_comp~time_point, data = CAN_complexity_data_90_99_14_19)
+#CAN_sig_90_99_14_19
+
+# between 2000-2013 and 2014-2019 timepoints
+CAN_complexity_data_00_13_14_19 <- CAN_isolate_complexity_metadata %>%
+  subset(time_point!="1990_1999")
+CAN_sig_00_13_14_19 <- t.test(path_comp~time_point, data = CAN_complexity_data_00_13_14_19)
+CAN_sig_00_13_14_19
+
+
+```
+
+#### China
+```{r, dpi=300}
+CHI_hagis_args <- list(
+  x = CHI_final_data,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1" 
+  
+)
+
+CHI_isolate_metadata <- CHI_final_data[c("Isolate","study" , "year","time_point" )]
+
+CHI_complexity <- do.call(calculate_complexities, CHI_hagis_args)
+CHI_isolate_complexity <- CHI_complexity$indvidual_complexities # taking individual isolates data, not data summarized by complexity
+names(CHI_isolate_complexity)[names(CHI_isolate_complexity)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+names(CHI_isolate_complexity)[names(CHI_isolate_complexity)=="N_samp"] <- "path_comp" # renaming columns so we can merge data.frames 
+CHI_isolate_complexity_metadata <- merge(CHI_isolate_complexity, CHI_isolate_metadata, by.x = c("Isolate"), by.y = c("Isolate"), all=F) # merging metadata and the complexity data
+CHI_isolate_complexity_metadata
+
+CHI_timepoints_mean_complexity <- CHI_isolate_complexity_metadata %>%
+  group_by(time_point) %>%
+  mutate() %>%
+  summarize(mean_comp=mean(path_comp),
+            sd_comp=sd(path_comp),
+            n=length(unique(Isolate))) # this will give us the mean and standard deviation for pathotype complexities, as well as number of isolates tested by time point. 
+
+pander(CHI_timepoints_mean_complexity) # using pander for aesthetically appealing tables in R-markdown
+
+# Lets look at this data using a boxplot
+CHI_complexity_box <- ggplot(CHI_isolate_complexity_metadata, aes(x=time_point, y=path_comp, fill = time_point)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("#99CCFF", "#808080")) +
+  coord_flip() +
+  theme_gray() +
+  stat_summary(fun.y=mean, geom="point", shape=20, size=3, color="black", fill="black") +
+  geom_signif(comparisons = list(c("1990_1999", "2000_2013")), 
+              test = "t.test",
+              map_signif_level = TRUE) +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 10, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ylim(0,10) +
+  xlab("Time Frame") + ylab("Pathotype Complexity") +
+  ggtitle("China") 
+
+CHI_complexity_box 
+
+# testing significance between China timepoints pathotype complexity - Welchs t.test
+
+# between 1990-1999 and 2000-2013 timepoints
+CHI_complexity_data_90_99_00_13 <- CHI_isolate_complexity_metadata %>%
+  subset(time_point!="2014_2019")
+CHI_sig_90_99_00_13 <- t.test(path_comp~time_point, data = CHI_complexity_data_90_99_00_13)
+CHI_sig_90_99_00_13
+
+
+
+
+```
+
+### Summary graphic of pathotype complexity over time for each country
+```{r, dpi=300}
+combined_path_comp_temporal <- plot_grid(ARG_complexity_box,CAN_complexity_box,CHI_complexity_box,USA_complexity_box)
+combined_path_comp_temporal
+
+ggsave("combined pathotype complexity over time coordflip.png", plot=combined_path_comp_temporal, width=20, height=16, dpi = 600)
+```
+
+
+--------------
+
+## Temporal comparison of Pathotype diversity
+
+#### USA
+```{r}
+# 1990-1999 alpha diversity indices
+
+USA_1990_1999_divers <- calculate_diversities(x = USA_1990_1999,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(USA_1990_1999_divers) 
+
+#2000-2013 diversity indices
+
+USA_2000_2013_divers <- calculate_diversities(x = USA_2000_2013,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(USA_2000_2013_divers)
+
+#2013-2019 diversity indices
+
+USA_2013_2019_divers <- calculate_diversities(x = USA_2013_2019,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(USA_2013_2019_divers)
+
+```
+
+#### Argentina
+```{r}
+# 1989-1999 alpha diversity indices
+
+ARG_1989_1999_divers <- calculate_diversities(x = ARG_1989_1999,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(ARG_1989_1999_divers) 
+
+#2000-2012 diversity indices
+
+ARG_2000_2012_divers <- calculate_diversities(x = ARG_2000_2012,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(ARG_2000_2012_divers)
+
+#2013-2019 diversity indices
+
+ARG_2013_2019_divers <- calculate_diversities(x = ARG_2013_2019,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(ARG_2013_2019_divers)
+
+```
+
+#### Canada
+```{r}
+#2000-2013 diversity indices
+
+CAN_2000_2013_divers <- calculate_diversities(x = CAN_2000_2013,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(CAN_2000_2013_divers)
+
+#2014-2019 diversity indices
+
+CAN_2014_2019_divers <- calculate_diversities(x = CAN_2014_2019,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(CAN_2014_2019_divers)
+
+```
+
+#### China
+```{r}
+# 1990-1999diversity indices
+
+CHI_1990_1999_divers <- calculate_diversities(x = CHI_1990_1999,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(CHI_1990_1999_divers)
+
+#2014-2019 diversity indices
+
+CHINA_2000_2013_divers <- calculate_diversities(x = CHINA_2000_2013,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1")
+
+pander(CHINA_2000_2013_divers)
+
+```
+
+--------------
+
+## Temporal comparison of Rps gene efficacy
+
+#### USA
+```{r, dpi=300}
+
+USA_timepoint_gene_summary <- USA_final_data %>%
+  group_by(time_point, Rps) %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
+# this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
+
+USA_rps_eff_tim <- ggplot(USA_timepoint_gene_summary, aes(x=Rps, y=perc_pathogenic, fill=time_point)) + 
+  geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d') +
+  scale_fill_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  theme_gray() +
+  geom_hline(yintercept=40, linetype="dashed", color = "red") +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_blank(),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                  labs(x="Rps gene",y="Percent Isolates Pathogenic", fill="Time Frame") +
+          ggtitle("USA") 
+         
+USA_rps_eff_tim
+
+```
+
+#### Argentina
+```{r, dpi=300}
+
+ARG_timepoint_gene_summary <- ARG_final_data %>%
+  group_by(time_point, Rps) %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
+# this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
+
+ARG_rps_eff_tim <- ggplot(ARG_timepoint_gene_summary, aes(x=Rps, y=perc_pathogenic, fill=time_point)) +
+geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d') +
+scale_fill_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+theme_gray() +
+  geom_hline(yintercept=40, linetype="dashed", color = "red") +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ggtitle("Argentina") +
+  labs(x="Rps gene",y="Percent Isolates Pathogenic", fill="Time Frame") 
+ARG_rps_eff_tim
+
+```
+
+#### Canada 
+###### (double check that this is correct, I expected a higher percent pathogenic for Rps1k, even though Rps1a and Rps1c is "lost")
+```{r, dpi=300}
+
+CAN_timepoint_gene_summary <- CAN_final_data %>%
+  group_by(time_point, Rps) %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
+# this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
+
+CAN_rps_eff_tim <- ggplot(CAN_timepoint_gene_summary, aes(x=Rps, y=perc_pathogenic, fill=time_point)) +
+geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d') +
+scale_fill_manual(values = c("#808080", "#FF9999")) +
+theme_gray() +
+  geom_hline(yintercept=40, linetype="dashed", color = "red") +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_blank(),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ggtitle("Canada") +
+  labs(x="Rps gene",y="Percent Isolates Pathogenic", fill="Time Frame")
+CAN_rps_eff_tim
+
+```
+
+#### China
+```{r, dpi=300}
+CHI_timepoint_gene_summary <- CHI_final_data %>%
+  group_by(time_point, Rps) %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100))
+# this will give us the number and percent of isolates pathogenic on each Rps gene tested, for each study we have.
+
+CHI_rps_eff_tim <- ggplot(CHI_timepoint_gene_summary, aes(Rps, perc_pathogenic, fill=time_point)) +
+geom_bar(stat = "identity", position = 'dodge', col = '#4d4d4d') +
+scale_fill_manual(values = c("#99CCFF", "#808080")) +
+theme_gray() +
+  geom_hline(yintercept=40, linetype="dashed", color = "red") +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ggtitle("China") +
+  labs(x="Rps gene",y="Percent Isolates Pathogenic", fill="Time Frame")
+CHI_rps_eff_tim
+
+```
+
+## Combined summary figure on resistance-gene efficacy
+```{r, dpi=300}
+# bar-graphs on resistance-gene efficacy
+combined_gene_eff_temporal <- plot_grid(ARG_rps_eff_tim,CAN_rps_eff_tim,CHI_rps_eff_tim,USA_rps_eff_tim)
+combined_gene_eff_temporal
+
+ggsave("combined pathotype combined gene efficacy temporal.png", plot=combined_gene_eff_temporal, width=20, height=16, dpi = 600)
+```
+
+So, it looks like there may have been significant and distinct changes in gene efficacy between our determined time points for each region except China, which did not have large changes in resistance-gene efficacy. However, We do not know if these changes in virulence over time are significant, and relevant to breeders or for changes management approach (i.e. use a different gene). Likewise, this just shows us a summary of which genes may have changed in efficacy, not how the sampled populations pathotype structure of each region has changed over time.
+
+To determine if/how the sampled populations pathotype structure has changed over time, we will use Principal Coordinate analysis (PCoA) to first visualize each regions pathotype structure by timepoint to see if they are distinct. We will then use a Permutational Multivariate Analysis of Variance (PERMANOVA) to determine if the populations pathotype structure is significantly different at each timepoint. Lastly, we will use a Discriminant Analysis of Principal Components (DAPC) to determine which genes specifically are driving the differences in each timepoints sampled populations pathotype structure. 
+
+From these comparison analyses we will be able to identify 1.) __If__ the sampled _P. sojae_ populations pathotype structure have changed significantly over time, and 2.) __which genes__ the sampled populations have adapted to thus driving the differences we (may) see between timepoints.
+
+So, without further ado &#127932; Lets get down to business... &#127932;
+
+## Temporal comparison of the sampled populations pathotype structure
+
+To do these analyses we will need to take our regional data sets and turn them each into a data matrix. We can do this using the _hagis_ R package function `create_binary_matrix()`. This will allow for downstream analyses using packages like `vegan` and `ape`.
+
+
+#### USA virulence matrix
+```{r}
+# we are going to remove the isolates now that have a gene-subsetted complexity of 0
+#to do this we will combine the USA_isolate_complexity file and the USA_final_data file, then filter, keeping only the isolates that do not have a pathotype complexity of 0
+
+USA_final_data_comp <- merge(USA_final_data, USA_isolate_complexity, by.x = c("Isolate"), by.y = c("Isolate"), all=F)
+
+USA_final_data_comp_no0 <- USA_final_data_comp %>%
+                    subset(path_comp!="0") %>% # remove those isolates with 0 pathotype complexity
+                    subset(Rps!="rps") # remove the susceptible control
+
+# creating the binary virulence matrix to be used for PCoA
+
+USA_vir_matrix <- create_binary_matrix(x = USA_final_data_comp_no0,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1") # this creates a binary matrix of virulence, but has no metadata associated
+
+
+
+
+```
+
+#### USA calculating Jaccard distances 
+```{r}
+# Jaccard distances on USA_vir_matrix 
+USA_vir_jaccard <- vegdist(USA_vir_matrix, "jaccard", na.rm = TRUE)
+#any(is.complex(USA_vir_jaccard))
+```
+
+#### USA Principal Coordinates Analysis 
+```{r}
+#USA_vir_pcoa <- cmdscale(USA_vir_jaccard, eig = TRUE) # this is the PCoA, using the stats package instead of ape as ape was throwing errors with our large dataset.
+#test <- pcoscaled(USA_vir_jaccard)
+USA_pca <- pcoa(USA_vir_jaccard)
+#plot( )
+# calculate the percentage of variation that each Principle Coordinate accounts for
+USA_Axis1.percent <- USA_pca$values$Relative_eig[[1]]*100 # Dimension (Axis 1 (PcoA1)) 42.10312%
+USA_Axis2.percent <- USA_pca$values$Relative_eig[[2]]*100 # Dimension (Axis 2 (PcoA2)) 21.40556%
+USA_Axis3.percent <- USA_pca$values$Relative_eig[[3]]*100 # 
+USA_Axis4.percent <- USA_pca$values$Relative_eig[[4]]*100
+USA_Axis5.percent <- USA_pca$values$Relative_eig[[5]]*100
+USA_Axis6.percent <- USA_pca$values$Relative_eig[[6]]*100
+USA_Axis7.percent <- USA_pca$values$Relative_eig[[7]]*100
+USA_Axis8.percent <- USA_pca$values$Relative_eig[[8]]*100
+
+
+barplot(USA_pca$values$Relative_eig[1:10]) # looks like the first two principal components account for nearly 65% of the variance, so we will just use those
+
+USA_pca_data <- data.frame(sample = rownames(USA_pca$vectors),
+                                      X = USA_pca$vectors[, 1],
+                                      Y = USA_pca$vectors[, 2])
+
+
+```
+
+#### adding metadata to PCoA 
+```{r}
+names(USA_pca_data)[names(USA_pca_data)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+USA_pca_metadata <- left_join(USA_pca_data, USA_isolate_metadata, by = "Isolate")
+head(USA_pca_metadata)
+```
+
+#### Plotting USA PCoA data
+```{r, dpi=300}
+str(USA_pca_metadata)
+
+print(unique(USA_pca_metadata$time_point))
+
+USA_pcoa_plot <- ggplot(data = USA_pca_metadata, aes(x = X, y = Y), fill=time_point) +
+  geom_point(aes(colour = time_point)) +
+  scale_color_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  xlab(paste("PcoA1 - ", round(USA_Axis1.percent,2), "%", sep = "")) +
+  ylab(paste("PcoA2 - ", round(USA_Axis2.percent,2), "%", sep = "")) +
+  theme_gray() +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+  stat_ellipse(aes(x = X, y = Y, color=time_point, group=time_point), level = 0.95) +
+  xlim(-1.0, 1.0) +
+  ylim(-0.6,0.8) +
+  labs(col="Time Frame") +
+  ggtitle("USA")
+
+USA_pcoa_plot
+
+```
+
+--------------
+
+#### Argentina virulence matrix
+```{r}
+# we are going to remove the isolates now that have a gene-subsetted complexity of 0
+
+ARG_final_data_comp <- merge(ARG_final_data, ARG_isolate_complexity, by.x = c("Isolate"), by.y = c("Isolate"), all=F)
+
+ARG_final_data_comp_no0 <- ARG_final_data_comp %>%
+                    subset(path_comp!="0") %>% # remove those isolates with 0 pathotype complexity
+                    subset(Rps!="rps") # remove the susceptible control
+
+str(ARG_final_data_comp_no0)
+
+# creating the binary virulence matrix to be used for PCoA
+
+ARG_vir_matrix <- create_binary_matrix(x = ARG_final_data_comp_no0,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1") # this creates a binary matrix of virulence, but has no metadata associated.
+
+```
+
+#### Argentina calculating Jaccard distances 
+```{r}
+# Jaccard distances on USA_vir_matrix 
+ARG_vir_jaccard <- vegdist(ARG_vir_matrix, "jaccard", na.rm = TRUE)
+#any(is.complex(USA_vir_jaccard))
+```
+
+#### Argentina Principal Coordinates Analysis 
+```{r}
+ARG_pca <- pcoa(ARG_vir_jaccard)
+
+# calculate the percentage of variation that each Principle Coordinate accounts for
+ARG_Axis1.percent <- ARG_pca$values$Relative_eig[[1]]*100 # Dimension (Axis 1 (PcoA1)) 49.56%
+ARG_Axis2.percent <- ARG_pca$values$Relative_eig[[2]]*100 # Dimension (Axis 2 (PcoA2)) 18.89%
+ARG_Axis3.percent <- ARG_pca$values$Relative_eig[[3]]*100 # 
+ARG_Axis4.percent <- ARG_pca$values$Relative_eig[[4]]*100
+ARG_Axis5.percent <- ARG_pca$values$Relative_eig[[5]]*100
+ARG_Axis6.percent <- ARG_pca$values$Relative_eig[[6]]*100
+ARG_Axis7.percent <- ARG_pca$values$Relative_eig[[7]]*100
+ARG_Axis8.percent <- ARG_pca$values$Relative_eig[[8]]*100
+
+
+barplot(ARG_pca$values$Relative_eig[1:10]) # 
+
+ARG_pca_data <- data.frame(sample = rownames(ARG_pca$vectors),
+                                      X = ARG_pca$vectors[, 1],
+                                      Y = ARG_pca$vectors[, 2])
+
+
+```
+
+#### adding metadata to PCoA 
+```{r}
+names(ARG_pca_data)[names(ARG_pca_data)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+ARG_pca_metadata <- left_join(ARG_pca_data, ARG_isolate_metadata, by = "Isolate")
+head(ARG_pca_metadata)
+```
+
+#### Plotting Argentina PCoA data
+```{r, dpi=300}
+ARG_pcoa_plot <- ggplot(data = ARG_pca_metadata, aes(x = X, y = Y), fill = time_point) +
+  geom_point(aes(colour = time_point)) +
+  scale_color_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  xlab(paste("PcoA1 - ", round(ARG_Axis1.percent,2), "%", sep = "")) +
+  ylab(paste("PcoA2 - ", round(ARG_Axis2.percent,2), "%", sep = "")) +
+  theme_gray() +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+  stat_ellipse(aes(x = X, y = Y, color=time_point, group=time_point), level = 0.95) +
+  xlim(-1.0, 1.0) +
+  ylim(-0.6,0.8) +
+  labs(col="Time Frame") +
+  ggtitle("Argentina")
+
+ARG_pcoa_plot
+
+```
+
+-------------
+
+#### Canada virulence matrix
+```{r}
+# we are going to remove the isolates now that have a gene-subsetted complexity of 0
+
+CAN_final_data_comp <- merge(CAN_final_data, CAN_isolate_complexity, by.x = c("Isolate"), by.y = c("Isolate"), all=F)
+
+CAN_final_data_comp_no0 <- CAN_final_data_comp %>%
+                    subset(path_comp!="0") %>% # remove those isolates with 0 pathotype complexity
+                    subset(Rps!="rps") # remove the susceptible control
+
+str(CAN_final_data_comp_no0)
+
+# creating the binary virulence matrix to be used for PCoA
+
+CAN_vir_matrix <- create_binary_matrix(x = CAN_final_data_comp_no0,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1") # this creates a binary matrix of virulence, but has no metadata associated.
+
+```
+
+#### Canada calculating Jaccard distances 
+```{r}
+# Jaccard distances on USA_vir_matrix 
+CAN_vir_jaccard <- vegdist(CAN_vir_matrix, "jaccard", na.rm = TRUE)
+#any(is.complex(USA_vir_jaccard))
+```
+
+#### Canada Principal Coordinates Analysis 
+```{r}
+CAN_pca <- pcoa(CAN_vir_jaccard)
+
+# calculate the percentage of variation that each Principle Coordinate accounts for
+CAN_Axis1.percent <- CAN_pca$values$Relative_eig[[1]]*100 # Dimension (Axis 1 (PcoA1)) 46.90%
+CAN_Axis2.percent <- CAN_pca$values$Relative_eig[[2]]*100 # Dimension (Axis 2 (PcoA2)) 31.14%
+CAN_Axis3.percent <- CAN_pca$values$Relative_eig[[3]]*100 # 
+CAN_Axis4.percent <- CAN_pca$values$Relative_eig[[4]]*100
+CAN_Axis5.percent <- CAN_pca$values$Relative_eig[[5]]*100
+CAN_Axis6.percent <- CAN_pca$values$Relative_eig[[6]]*100
+CAN_Axis7.percent <- CAN_pca$values$Relative_eig[[7]]*100
+CAN_Axis8.percent <- CAN_pca$values$Relative_eig[[8]]*100
+
+
+barplot(CAN_pca$values$Relative_eig[1:10]) # 
+
+CAN_pca_data <- data.frame(sample = rownames(CAN_pca$vectors),
+                                      X = CAN_pca$vectors[, 1],
+                                      Y = CAN_pca$vectors[, 2])
+
+
+```
+
+#### adding metadata to PCoA 
+```{r}
+names(CAN_pca_data)[names(CAN_pca_data)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+CAN_pca_metadata <- left_join(CAN_pca_data, CAN_isolate_metadata, by = "Isolate")
+head(CAN_pca_metadata)
+```
+
+#### Plotting Canada PCoA data
+```{r, dpi=300}
+CAN_pcoa_plot <- ggplot(data = CAN_pca_metadata, aes(x = X, y = Y), fill = time_point) +
+  geom_point(aes(colour = time_point)) +
+  scale_color_manual(values = c("#808080", "#FF9999")) +
+  xlab(paste("PcoA1 - ", round(CAN_Axis1.percent,2), "%", sep = "")) +
+  ylab(paste("PcoA2 - ", round(CAN_Axis2.percent,2), "%", sep = "")) +
+  theme_gray() +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+  stat_ellipse(aes(x = X, y = Y, color=time_point, group=time_point), level = 0.95) +
+  xlim(-1.0, 1.0) +
+  ylim(-0.6,0.8) +
+  labs(col="Time Frame") +
+  ggtitle("Canada")
+
+CAN_pcoa_plot
+
+```
+
+-------------
+
+#### China virulence matrix
+```{r}
+# we are going to remove the isolates now that have a gene-subsetted complexity of 0
+
+CHI_final_data_comp <- merge(CHI_final_data, CHI_isolate_complexity, by.x = c("Isolate"), by.y = c("Isolate"), all=F)
+
+CHI_final_data_comp_no0 <- CHI_final_data_comp %>%
+                    subset(path_comp!="0") %>% # remove those isolates with 0 pathotype complexity
+                    subset(Rps!="rps") # remove the susceptible control
+
+str(CHI_final_data_comp_no0)
+
+# creating the binary virulence matrix to be used for PCoA
+
+CHI_vir_matrix <- create_binary_matrix(x = CHI_final_data_comp_no0,
+  
+  cutoff = 1, 
+  
+  control = "rps",
+  
+  sample = "Isolate",
+  
+  gene = "Rps",
+  
+  perc_susc = "Susceptible.1") # this creates a binary matrix of virulence, but has no metadata associated.
+
+```
+
+#### China calculating Jaccard distances 
+```{r}
+# Jaccard distances on USA_vir_matrix 
+CHI_vir_jaccard <- vegdist(CHI_vir_matrix, "jaccard", na.rm = TRUE)
+#any(is.complex(USA_vir_jaccard))
+```
+
+#### China Principal Coordinates Analysis 
+```{r}
+CHI_pca <- pcoa(CHI_vir_jaccard)
+
+# calculate the percentage of variation that each Principle Coordinate accounts for
+CHI_Axis1.percent <- CHI_pca$values$Relative_eig[[1]]*100 # Dimension (Axis 1 (PcoA1)) 30.26%
+CHI_Axis2.percent <- CHI_pca$values$Relative_eig[[2]]*100 # Dimension (Axis 2 (PcoA2)) 18.78%
+CHI_Axis3.percent <- CHI_pca$values$Relative_eig[[3]]*100 # 
+CHI_Axis4.percent <- CHI_pca$values$Relative_eig[[4]]*100
+CHI_Axis5.percent <- CHI_pca$values$Relative_eig[[5]]*100
+CHI_Axis6.percent <- CHI_pca$values$Relative_eig[[6]]*100
+CHI_Axis7.percent <- CHI_pca$values$Relative_eig[[7]]*100
+CHI_Axis8.percent <- CHI_pca$values$Relative_eig[[8]]*100
+
+
+barplot(CHI_pca$values$Relative_eig[1:10]) # 
+
+CHI_pca_data <- data.frame(sample = rownames(CHI_pca$vectors),
+                                      X = CHI_pca$vectors[, 1],
+                                      Y = CHI_pca$vectors[, 2])
+
+
+```
+
+#### adding metadata to PCoA 
+```{r}
+names(CHI_pca_data)[names(CHI_pca_data)=="sample"] <- "Isolate" # renaming columns so we can merge data.frames
+CHI_pca_metadata <- left_join(CHI_pca_data, CHI_isolate_metadata, by = "Isolate")
+head(CHI_pca_metadata)
+```
+
+#### Plotting China PCoA data
+```{r, dpi=300}
+CHI_pcoa_plot <- ggplot(data = CHI_pca_metadata, aes(x = X, y = Y), fill = time_point) +
+  geom_point(aes(colour = time_point)) +
+  scale_color_manual(values = c("#99CCFF", "#808080")) +
+  xlab(paste("PcoA1 - ", round(CHI_Axis1.percent,2), "%", sep = "")) +
+  ylab(paste("PcoA2 - ", round(CHI_Axis2.percent,2), "%", sep = "")) +
+  theme_gray() +
+  theme(axis.text.x = element_text(size = 20, face = "bold", angle=45, hjust=1, family = "serif"),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+  stat_ellipse(aes(x = X, y = Y, color=time_point, group=time_point), level = 0.95) +
+  xlim(-1.0, 1.0) +
+  ylim(-0.6,0.8) +
+  labs(col="Time Frame") +
+  ggtitle("China")
+
+CHI_pcoa_plot
+
+```
+
+
+-------------
+
+#### PCOA plots side by side
+```{r, dpi=300}
+combined_PCOA_temporal <- plot_grid(ARG_pcoa_plot,CAN_pcoa_plot,CHI_pcoa_plot,USA_pcoa_plot)
+combined_PCOA_temporal
+
+ggsave("combined PCoA temporal.png", plot=combined_PCOA_temporal, width=20, height=16, dpi = 600)
+```
+
+Differences in _P. sojae_ populations pathotype complexity over time were apparent, the populations pathotype structure/composition overall (as shown with 95% data ellipses) were not as apparent. However, this does not mean that the populations pathotype structure between these timepoints are not different. 
+
+As you can see in the 'combined_PCOA_temporal' figure, there are differences between the pathotype structure. Over time, it appears, that the pathotype structure for each region has become less dispersed, while still diverse, and this limited dispersion is likely due to increases in complexity of isolates overall, meaning individual pathotypes are becoming more similar as each isolate can overcome more of the tested Rps genes.
+
+To test these hypotheses, we will use a beta-dispersion test to identify if the dispersion (variance) of pathotypes within each timepoint are significantly different from each other. To "back up" the beta-dispersion test results we will, use Analysis of Similarities (ANOSIM) to determine if the pathotype composition within each timepoints population is more similar to itself than the other timepoints(i.e. how similar are these two groups to each other, from very similar to very dissimilar).We will then use a PERMANOVA to identify if the pathotype structure/composition are significantly different between these timepoints within each country.
+
+From these statistical tests we will be able to determine __IF__ the sampled populations pathotype compositions had significantly changed over time for our regions of interest.
+
+-------------
+
+## Determination of significant changes in sampled _Phytophthora sojae_ populations pathotype composition/structure
+
+#### USA beta-dispersion
+```{r}
+
+# lets figure out how many isolates are in each timepoint group for this analysis
+unique(USA_final_data_comp_no0$time_point) # to select the correct time points for this region
+
+USA_isolates_1990_1999 <- USA_final_data_comp_no0 %>%
+                subset(time_point=="1990_1999") 
+
+length(unique(USA_isolates_1990_1999$Isolate))
+
+USA_isolates_2000_2013 <- USA_final_data_comp_no0 %>%
+                subset(time_point=="2000_2013") 
+
+length(unique(USA_isolates_2000_2013$Isolate))
+
+USA_isolates_2013_2019 <- USA_final_data_comp_no0 %>%
+                subset(time_point=="2013_2019") 
+
+length(unique(USA_isolates_2013_2019$Isolate))
+
+
+# making the timepoint groups
+USA_groups <- as.factor(c(rep("1990_1999",1115), rep("2000_2013", 933), rep("2013_2019", 1064)))# this makes a list of the locations for each sampled population.
+
+# checking that we have all the isolates data
+length(USA_groups) 
+length(unique(USA_final_data_comp_no0$Isolate)) ## these numbers should match!!
+
+# beta dispersion analysis and significance tests
+USA_timepoint_disp <- betadisper(USA_vir_jaccard, USA_groups) #running beta-dispersion on this dataset
+anova(USA_timepoint_disp) # tests if centroid distances are significantly different from each other
+TukeyHSD(USA_timepoint_disp) # test significance between each group
+boxplot(USA_timepoint_disp, xlab="Timepoint", ylab = "Distance from Centroid (mean)")
+
+```
+
+#### USA Analysis of similarities (ANOSIM)
+```{r}
+USA_patho_anosim <- anosim(USA_vir_jaccard, USA_groups)
+USA_patho_anosim
+```
+
+### USA Permutational Multivariate Analysis of Variance (PERMANOVA)
+
+```{r}
+USA_patho_perma <- adonis2(USA_vir_jaccard ~ USA_groups)
+
+USA_patho_perma
+
+USA_patho_pair_perma <-
+  pairwise.perm.manova(USA_vir_jaccard, USA_groups, nperm = 999, R2 = TRUE)
+
+USA_patho_pair_perma
+
+USA_patho_pair_perma$R2.value
+```
+
+#### USA Discriminant Analysis of Principal Coordinates
+```{r}
+# DAPC Analysis #
+length(USA_vir_matrix)
+
+set.seed(999)
+# using xvalDapc to identify the number of PC to retain
+USA_vir_matrix2 <- na.omit(USA_vir_matrix) # remove NAs, 14 removed from 2013-2019 timepoint
+USA_groups2 <- as.factor(c(rep("1990_1999",1115), rep("2000_2013", 933), rep("2013_2019", 1050))) # change 2013-2019 timepoint from 1064 to 1050
+
+pathx <- xvalDapc(USA_vir_matrix2, grp = USA_groups2, scale = TRUE) # this is a cross validation step used to identify the optimal number of principal coordinates to use in the analysis. 
+system.time(USA_pathx2 <- xvalDapc(USA_vir_matrix2, grp = USA_groups2, n.pca = 3:9, n.rep = 1000, scale = TRUE)) # this is the same as the step before, however, we are centering the validation around 6 PC used (3:9) and running it for 1000 reps to confirm 6 PC is the optimal number to use
+USA_pathx2
+
+scatter(USA_pathx2$DAPC, cex = 2, legend = TRUE, clabel = FALSE, posi.leg = "bottomleft", scree.pca = TRUE, posi.pca = "topleft", cleg = 0.75, xax = 1, yax = 2, inset.solid = 1)
+
+USA_dapc1 <- dapc(USA_vir_matrix2, var.contrib = TRUE, scale = TRUE, n.pca = 6, n.da = 2, grp = USA_groups2) # ran with 2 discriminant function saved
+a.score.USA_dapc1 <- a.score(USA_dapc1) # on average only 34% accuracy
+a.score.optimum.USA_dapc1 <- optim.a.score(USA_dapc1)
+
+# validating the optimum PC to save for highest a-score
+USA_dapc2 <- dapc(USA_vir_matrix2, grp = USA_groups2, n.pca = 9, n.da = 2, scale = TRUE)
+optim.a.score(USA_dapc2) # this also identifies n=6 as the optimal PC to retain for analysis
+
+# rerunning DAPC with 6 PC as it is the optimum for this dataset
+USA_dapc3 <- dapc(USA_vir_matrix2, grp = USA_groups2, n.pca = 6, n.da=2, var.cotrib = TRUE, scale = TRUE, center = FALSE) # 1 discriminant function saved
+summary.dapc(USA_dapc3)
+a.score.USA_dapc3 <- a.score(USA_dapc3) # on average there was a 33.7% accuracy with assigning pathotypes to a priori groups
+scatter(USA_dapc3, grp = USA_groups2, legend = TRUE, scree.pca = TRUE, posi.pca = "topleft", posi.leg = "bottomleft")
+
+#identifying the important resistance genes that are different between the groups (studies)
+USA_contrib <- loadingplot(USA_dapc3$var.contr, axis = 2, threshold = 0.06, lab.jitter = 1) # shows the resistance genes which are different from each group. threshold of 0.10 means 
+USA_contrib
+
+```
+
+
+#### Argentina beta-dispersion
+```{r}
+
+# lets figure out how many isolates are in each timepoint group for this analysis
+unique(ARG_final_data_comp_no0$time_point) # to select the correct time points for this region
+
+ARG_isolates_1989_1999 <- ARG_final_data_comp_no0 %>%
+                subset(time_point=="1989_1999") 
+
+length(unique(ARG_isolates_1989_1999$Isolate))
+
+ARG_isolates_2000_2012 <- ARG_final_data_comp_no0 %>%
+                subset(time_point=="2000_2012") 
+
+length(unique(ARG_isolates_2000_2012$Isolate))
+
+ARG_isolates_2013_2019 <- ARG_final_data_comp_no0 %>%
+                subset(time_point=="2013_2019") 
+
+length(unique(ARG_isolates_2013_2019$Isolate))
+
+
+# making the timepoint groups
+ARG_groups <- as.factor(c(rep("1989_1999",174), rep("2000_2012", 65), rep("2013_2019", 210))) # this makes a list of the locations for each sampled population.
+
+# checking that we have all the isolates data
+length(ARG_groups) 
+length(unique(ARG_final_data_comp_no0$Isolate)) ## these numbers should match!!
+
+# beta dispersion analysis and significance tests
+ARG_timepoint_disp <- betadisper(ARG_vir_jaccard, ARG_groups) #running beta-dispersion on this dataset
+anova(ARG_timepoint_disp) # tests if centroid distances are significantly different from each other
+TukeyHSD(ARG_timepoint_disp) # test significance between each group
+boxplot(ARG_timepoint_disp, xlab="Timepoint", ylab = "Distance from Centroid (mean)")
+
+```
+
+#### Argentina Analysis of similarities (ANOSIM)
+```{r}
+ARG_patho_anosim <- anosim(ARG_vir_jaccard, ARG_groups)
+ARG_patho_anosim
+```
+
+### Argentina Permutational Multivariate Analysis of Variance (PERMANOVA)
+```{r}
+ARG_patho_perma <- adonis2(ARG_vir_jaccard ~ ARG_groups)
+
+ARG_patho_perma
+
+ARG_patho_pair_perma <- pairwise.perm.manova(ARG_vir_jaccard, ARG_groups, nperm = 999, R2=TRUE)
+
+ARG_patho_pair_perma
+
+ARG_patho_pair_perma$R2.value
+```
+
+#### Argentina Discriminant Analysis of Principal Coordinates
+```{r}
+# DAPC Analysis #
+length(ARG_vir_matrix)
+
+set.seed(999)
+# using xvalDapc to identify the number of PC to retain
+ARG_vir_matrix2 <- na.omit(ARG_vir_matrix) # remove NAs, if present
+ARG_groups2 <- as.factor(c(rep("1989_1999",174), rep("2000_2012", 65), rep("2013_2019", 210))) 
+
+pathx <- xvalDapc(ARG_vir_matrix2, grp = ARG_groups2, scale = TRUE) # this is a cross validation step used to identify the optimal number of principal coordinates to use in the analysis. 
+system.time(ARG_pathx2 <- xvalDapc(ARG_vir_matrix2, grp = ARG_groups2, n.pca = 2:8, n.rep = 1000, scale = TRUE)) # this is the same as the step before, however, we are centering the validation around 5 PC used (2:8) and running it for 1000 reps to confirm 5 PC is the optimal number to use
+ARG_pathx2 # 3 seems the best with diminishing returns after n=3
+
+scatter(ARG_pathx2$DAPC, cex = 2, legend = TRUE, clabel = FALSE, posi.leg = "bottomleft", scree.pca = TRUE, posi.pca = "topleft", cleg = 0.75, xax = 1, yax = 2, inset.solid = 1)
+
+ARG_dapc1 <- dapc(ARG_vir_matrix2, var.contrib = TRUE, scale = TRUE, n.pca = 3, n.da = 2, grp = ARG_groups2) # ran with 2 discriminant function saved
+a.score.ARG_dapc1 <- a.score(ARG_dapc1) # on average only 34% accuracy
+a.score.optimum.ARG_dapc1 <- optim.a.score(ARG_dapc1)
+
+# validating the optimum PC to save for highest a-score
+ARG_dapc2 <- dapc(ARG_vir_matrix2, grp = ARG_groups2, n.pca = 9, n.da = 2, scale = TRUE)
+optim.a.score(ARG_dapc2) # this identifies n=3 as the optimal PC to retain for analysis, diminishing returns after n=3
+
+# rerunning DAPC with 3 PC as it is the optimum for this dataset
+ARG_dapc3 <- dapc(ARG_vir_matrix2, grp = ARG_groups2, n.pca = 3, n.da=2, var.cotrib = TRUE, scale = TRUE, center = FALSE) # 1 discriminant function saved
+summary.dapc(ARG_dapc3)
+a.score.ARG_dapc3 <- a.score(ARG_dapc3) # on average there was a 33.7% accuracy with assigning pathotypes to a priori groups
+scatter(ARG_dapc3, grp = ARG_groups2, legend = TRUE, scree.pca = TRUE, posi.pca = "topleft", posi.leg = "bottomleft")
+
+#identifying the important resistance genes that are different between the groups (studies)
+ARG_contrib <- loadingplot(ARG_dapc3$var.contr, axis = 1, threshold = 0.06, lab.jitter = 1) # shows the resistance genes which are different from each group. threshold of 0.10 means 
+ARG_contrib
+
+```
+
+#### Canada beta-dispersion
+```{r}
+
+# lets figure out how many isolates are in each timepoint group for this analysis
+unique(CAN_final_data_comp_no0$time_point) # to select the correct time points for this region
+
+CAN_isolates_2000_2013 <- CAN_final_data_comp_no0 %>%
+                subset(time_point=="2000_2013") 
+
+length(unique(CAN_isolates_2000_2013$Isolate))
+
+CAN_isolates_2014_2019 <- CAN_final_data_comp_no0 %>%
+                subset(time_point=="2014_2019") 
+
+length(unique(CAN_isolates_2014_2019$Isolate))
+
+
+# making the timepoint groups
+CAN_groups <- as.factor(c(rep("2000_2013", 253), rep("2014_2019", 394))) # this makes a list of the locations for each sampled population.
+
+# checking that we have all the isolates data
+length(CAN_groups) 
+length(unique(CAN_final_data_comp_no0$Isolate)) ## these numbers should match!!
+
+# beta dispersion analysis and significance tests
+CAN_timepoint_disp <- betadisper(CAN_vir_jaccard, CAN_groups) #running beta-dispersion on this dataset
+anova(CAN_timepoint_disp) # tests if centroid distances are significantly different from each other
+TukeyHSD(CAN_timepoint_disp) # test significance between each group
+boxplot(CAN_timepoint_disp, xlab="Timepoint", ylab = "Distance from Centroid (mean)")
+
+```
+
+#### Canada Analysis of similarities (ANOSIM)
+```{r}
+CAN_patho_anosim <- anosim(CAN_vir_jaccard, CAN_groups)
+CAN_patho_anosim
+```
+
+### Canada Permutational Multivariate Analysis of Variance (PERMANOVA)
+```{r}
+CAN_patho_perma <- adonis2(CAN_vir_jaccard ~ CAN_groups)
+
+CAN_patho_perma
+
+CAN_patho_pair_perma <- pairwise.perm.manova(CAN_vir_jaccard, CAN_groups, nperm = 999, R2=TRUE)
+
+CAN_patho_pair_perma
+
+CAN_patho_pair_perma$R2.value
+```
+
+#### Canada Discriminant Analysis of Principal Coordinates
+```{r}
+# DAPC Analysis #
+length(CAN_vir_matrix)
+#length(CAN_vir_matrix2)
+
+
+set.seed(999)
+# using xvalDapc to identify the number of PC to retain
+CAN_vir_matrix2 <- na.omit(CAN_vir_matrix) # remove NAs, if present
+CAN_groups2 <- as.factor(c(rep("2000_2013", 253), rep("2014_2019", 394))) 
+
+pathx <- xvalDapc(CAN_vir_matrix2, grp = CAN_groups2, scale = TRUE) # this is a cross validation step used to identify the optimal number of principal coordinates to use in the analysis. 
+system.time(CAN_pathx2 <- xvalDapc(CAN_vir_matrix2, grp = CAN_groups2, n.pca = 2:8, n.rep = 1000, scale = TRUE)) # this is the same as the step before, however, we are centering the validation around 5 PC used (2:8) and running it for 1000 reps to confirm 5 PC is the optimal number to use
+CAN_pathx2 # 3 seems the best with diminishing returns after n=3
+
+scatter(CAN_pathx2$DAPC, cex = 2, legend = TRUE, clabel = FALSE, posi.leg = "bottomleft", scree.pca = TRUE, posi.pca = "topleft", cleg = 0.75, xax = 1, yax = 2, inset.solid = 1)
+
+CAN_dapc1 <- dapc(CAN_vir_matrix2, var.contrib = TRUE, scale = TRUE, n.pca = 3, n.da = 2, grp = CAN_groups2) # ran with 2 discriminant function saved
+a.score.CAN_dapc1 <- a.score(CAN_dapc1) # on average only 34% accuracy
+a.score.optimum.CAN_dapc1 <- optim.a.score(CAN_dapc1)
+
+# validating the optimum PC to save for highest a-score
+CAN_dapc2 <- dapc(CAN_vir_matrix2, grp = CAN_groups2, n.pca = 9, n.da = 2, scale = TRUE)
+optim.a.score(CAN_dapc2) # this identifies n=3 as the optimal PC to retain for analysis, diminishing returns after n=3
+
+# rerunning DAPC with 3 PC as it is the optimum for this dataset
+CAN_dapc3 <- dapc(CAN_vir_matrix2, grp = CAN_groups2, n.pca = 3, n.da=2, var.cotrib = TRUE, scale = TRUE, center = FALSE) # 1 discriminant function saved
+summary.dapc(CAN_dapc3)
+a.score.CAN_dapc3 <- a.score(CAN_dapc3) # on average there was a 33.7% accuracy with assigning pathotypes to a priori groups
+scatter(CAN_dapc3, grp = CAN_groups2, legend = TRUE, scree.pca = TRUE, posi.pca = "topleft", posi.leg = "bottomleft")
+
+#identifying the important resistance genes that are different between the groups (studies)
+CAN_contrib <- loadingplot(CAN_dapc3$var.contr, axis = 1, threshold = 0.06, lab.jitter = 1) # shows the resistance genes which are different from each group. threshold of 0.10 means 
+CAN_contrib
+
+```
+
+#### China beta-dispersion
+```{r}
+
+# lets figure out how many isolates are in each timepoint group for this analysis
+unique(CHI_final_data_comp_no0$time_point) # to select the correct time points for this region
+
+CHI_isolates_1990_1999 <- CHI_final_data_comp_no0 %>%
+                subset(time_point=="1990_1999") 
+
+length(unique(CHI_isolates_1990_1999$Isolate))
+
+CHI_isolates_2000_2013 <- CHI_final_data_comp_no0 %>%
+                subset(time_point=="2000_2013") 
+
+length(unique(CHI_isolates_2000_2013$Isolate))
+
+# making the timepoint groups
+CHI_groups <- as.factor(c(rep("1990_1999", 96), rep("2000_2013", 758))) # this makes a list of the locations for each sampled population.
+
+# checking that we have all the isolates data
+length(CHI_groups) 
+length(unique(CHI_final_data_comp_no0$Isolate)) ## these numbers should match!!
+
+# beta dispersion analysis and significance tests
+CHI_timepoint_disp <- betadisper(CHI_vir_jaccard, CHI_groups) #running beta-dispersion on this dataset
+anova(CHI_timepoint_disp) # tests if centroid distances are significantly different from each other
+TukeyHSD(CHI_timepoint_disp) # test significance between each group
+boxplot(CHI_timepoint_disp, xlab="Timepoint", ylab = "Distance from Centroid (mean)")
+
+```
+
+#### China Analysis of similarities (ANOSIM)
+```{r}
+CHI_patho_anosim <- anosim(CHI_vir_jaccard, CHI_groups)
+CHI_patho_anosim
+```
+
+### China Permutational Multivariate Analysis of Variance (PERMANOVA)
+```{r}
+CHI_patho_perma <- adonis2(CHI_vir_jaccard ~ CHI_groups)
+
+CHI_patho_perma
+
+CHI_patho_pair_perma <- pairwise.perm.manova(CHI_vir_jaccard, CHI_groups, nperm = 999, R2=TRUE)
+
+CHI_patho_pair_perma
+
+CHI_patho_pair_perma$R2.value
+```
+
+#### China Discriminant Analysis of Principal Coordinates
+```{r}
+# DAPC Analysis #
+length(CHI_vir_matrix)
+length(CHI_vir_matrix2)
+set.seed(999)
+# using xvalDapc to identify the number of PC to retain
+CHI_vir_matrix2 <- na.omit(CHI_vir_matrix) # remove NAs, if present
+CHI_groups2 <- as.factor(c(rep("1990_1999", 96), rep("2000_2013", 758))) 
+
+pathx <- xvalDapc(CHI_vir_matrix2, grp = CHI_groups2, scale = TRUE) # this is a cross validation step used to identify the optimal number of principal coordinates to use in the analysis. 
+system.time(CHI_pathx2 <- xvalDapc(CHI_vir_matrix2, grp = CHI_groups2, n.pca = 1:7, n.rep = 1000, scale = TRUE)) # this is the same as the step before, however, we are centering the validation around 4 PC used (1:7) and running it for 1000 reps to confirm 4 PC is the optimal number to use
+CHI_pathx2 # 4 seems the best with diminishing returns after n=4
+
+scatter(CHI_pathx2$DAPC, cex = 2, legend = TRUE, clabel = FALSE, posi.leg = "bottomleft", scree.pca = TRUE, posi.pca = "topleft", cleg = 0.75, xax = 1, yax = 2, inset.solid = 1)
+
+CHI_dapc1 <- dapc(CHI_vir_matrix2, var.contrib = TRUE, scale = TRUE, n.pca = 4, n.da = 2, grp = CHI_groups2) # ran with 2 discriminant function saved
+a.score.CHI_dapc1 <- a.score(CHI_dapc1) 
+a.score.optimum.CHI_dapc1 <- optim.a.score(CHI_dapc1)
+
+# validating the optimum PC to save for highest a-score
+CHI_dapc2 <- dapc(CHI_vir_matrix2, grp = CHI_groups2, n.pca = 9, n.da = 2, scale = TRUE)
+optim.a.score(CHI_dapc2) # this identifies n=4 as the optimal PC to retain for analysis, diminishing returns after n=4
+
+# rerunning DAPC with 4 PC as it is the optimum for this dataset
+CHI_dapc3 <- dapc(CHI_vir_matrix2, grp = CHI_groups2, n.pca = 4, n.da=2, var.cotrib = TRUE, scale = TRUE, center = FALSE)
+summary.dapc(CHI_dapc3)
+a.score.CHI_dapc3 <- a.score(CHI_dapc3) # on average there was a 33.7% accuracy with assigning pathotypes to a priori groups
+scatter(CHI_dapc3, grp = CHI_groups2, legend = TRUE, scree.pca = TRUE, posi.pca = "topleft", posi.leg = "bottomleft")
+
+#identifying the important resistance genes that are different between the groups (studies)
+CHI_contrib <- loadingplot(CHI_dapc3$var.contr, axis = 1, threshold = 0.06, lab.jitter = 1) # shows the resistance genes which are different from each group. threshold of 0.10 means 
+CHI_contrib
+
+```
+
+-----
+
+##### Supplementary Figure 1
+
+We have identified a loss of the Rps1c and Rps1k Rps-genes for management in the U.S., Argentina, and Canada. Now, lets use a linear regression to try and identify how long these genes (along with Rps1a) were effective for. Schmitthenner proposed that, based on the Rps1a-gene, Rps-genes would only be effective for 8-15 years. 
+
+
+-----
+
+First, lets visualize the _P. sojae_ populations virulence on each Rps-gene we are interested in (Rps1a, Rps1b, Rps1c, Rps1d, Rps1k, Rps3a, Rps6, Rps7) over time.
+
+USA
+```{r, dpi=600}
+USA_timepoint_study_gene_summary <- USA_final_data %>%
+  group_by(time_point, study, year, Rps) %>%
+  subset(Rps!="rps") %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100)) # percent efficacy by gene, within studies, while still retaining timepoint. 
+
+USA_timepoint_study_gene_summary$year <- sub("-", "_", USA_timepoint_study_gene_summary$year)
+
+USA_RPS_overtime <- ggplot(USA_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic), fill = time_point) +
+  facet_wrap(vars(Rps)) +
+  geom_point(aes(colour = factor(time_point))) +
+  scale_color_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  geom_smooth(method=lm) +
+  theme_gray() +
+  geom_hline(yintercept=40, linetype="dashed", color = "red") +
+  theme(#axis.text.x = element_blank(),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     #axis.title.x = element_blank(),
+                     axis.title.y = element_blank(),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                      #axis.ticks.x = element_blank(),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ggtitle("USA") +
+                  stat_cor(method = "pearson", label.x = 1, label.y = 90) +
+                  #xlim(1,3)  +
+                  ylim(0,100) +
+                  scale_x_continuous(name = "Year Sampled", breaks = c(1, 9, 12, 16), labels = c("1990", "2001", "2013", "2018")) +
+                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Frame")
+
+USA_RPS_overtime
+
+```
+Argentina
+```{r, dpi=600}
+ARG_timepoint_study_gene_summary <- ARG_final_data %>%
+  group_by(time_point, study, year, Rps) %>%
+  subset(Rps!="rps") %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100)) # percent efficacy by gene, within studies, while still retaining timepoint. 
+
+ARG_RPS_overtime <-ggplot(ARG_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic), fill = time_point) +
+  facet_wrap(vars(Rps)) +
+  geom_point(aes(colour = factor(time_point))) +
+  scale_color_manual(values = c("#99CCFF", "#808080", "#FF9999")) +
+  geom_smooth(method=lm) +
+  theme_gray() +
+  geom_hline(yintercept=40, linetype="dashed", color = "red") +
+  theme(#axis.text.x = element_blank(),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                      #axis.ticks.x = element_blank(),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ggtitle("Argentina") +
+                  stat_cor(method = "pearson", label.x = 1, label.y = 90) +
+                  #xlim(1,3)  +
+                  ylim(0,100) +
+                  scale_x_continuous(name = "Year Sampled", breaks = c(1, 4, 8, 13), labels = c("1989", "2000", "2013", "2015")) +
+                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Frame")
+
+ARG_RPS_overtime
+
+```
+
+Canada
+```{r, dpi=600}
+CAN_timepoint_study_gene_summary <- CAN_final_data %>%
+  group_by(time_point, study, year, Rps) %>%
+  subset(Rps!="rps") %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100)) # percent efficacy by gene, within studies, while still retaining timepoint. 
+
+CAN_RPS_overtime <-ggplot(CAN_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic), fill = time_point) +
+  facet_wrap(vars(Rps)) +
+  geom_point(aes(colour = factor(time_point))) +
+  scale_color_manual(values = c("#808080", "#FF9999")) +
+  geom_smooth(method=lm) +
+  theme_gray() +
+  geom_hline(yintercept=40, linetype="dashed", color = "red") +
+  theme(#axis.text.x = element_blank(),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.title.x = element_blank(),
+                     axis.title.y = element_blank(),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     # axis.ticks.x = element_blank(),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ggtitle("Canada") +
+                  stat_cor(method = "pearson", label.x = 1, label.y = 90) +
+                  #xlim(1,3)  +
+                  ylim(0,100) +
+                  scale_x_continuous(name = "Year Sampled", breaks = c(1, 4, 7), labels = c("2010", "2014", "2019")) +
+                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Frame")
+
+CAN_RPS_overtime
+
+```
+China
+```{r, dpi=600}
+CHI_timepoint_study_gene_summary <- CHI_final_data %>%
+  group_by(time_point, study, year, Rps) %>%
+  subset(Rps!="rps") %>%
+  mutate() %>%
+  summarize(N_pathogenic=sum(Susceptible.1),
+            perc_pathogenic=((N_pathogenic)/(length(unique(Isolate)))*100)) # percent efficacy by gene, within studies, while still retaining timepoint. 
+
+CHI_RPS_overtime <-ggplot(CHI_timepoint_study_gene_summary, aes(x=as.numeric(factor(year)),y=perc_pathogenic), fill = time_point) +
+  facet_wrap(vars(Rps)) +
+  geom_point(aes(colour = factor(time_point))) +
+  scale_color_manual(values = c("#99CCFF", "#808080")) +
+  geom_smooth(method=lm) +
+  theme_gray() +
+  geom_hline(yintercept=40, linetype="dashed", color = "red") +
+  theme(#axis.text.x = element_blank(),
+                     axis.text.y = element_text(size = 20, face = "bold", family = "serif"),
+                     #axis.title.x = element_blank(),
+                     axis.title.y = element_text(size = 20, face = "bold", family = "serif"),
+                     axis.line.x = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     axis.line.y = element_line(colour = 'gray', size=0.5, linetype='solid'),
+                     # axis.ticks.x = element_blank(),
+                     legend.text = element_text(size = 15, face = "bold", family = "serif"),
+                     legend.key = element_blank(),
+                     legend.title = element_text(size = 15, face="bold", family = "serif"),
+                     legend.position = "right",
+                     strip.text.x = element_text(size = 20, face = "bold", family = "serif"),
+                     title = element_text(size = 25, family = "serif")) +
+                      ggtitle("China") +
+                  stat_cor(method = "pearson", label.x = 1, label.y = 90) +
+                  #xlim(1,3)  +
+                  ylim(0,100) +
+                  scale_x_continuous(name = "Year Sampled", breaks = c(1, 6, 13), labels = c("1990", "2000", "2013")) +
+                  labs(x="Time Point",y="Percent Isolates Pathogenic", col="Time Frame")
+
+CHI_RPS_overtime
+
+```
+
+combined
+```{r, dpi=600}
+combined_rpseff_overtime <- plot_grid(ARG_RPS_overtime,CAN_RPS_overtime, CHI_RPS_overtime, USA_RPS_overtime)
+combined_rpseff_overtime
+
+ggsave("combined rps eff over time40.png", plot=combined_rpseff_overtime, width=20, height=16, dpi = 600)
+```
