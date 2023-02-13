@@ -4,6 +4,9 @@ Austin McCoy
 
 [![DOI](https://zenodo.org/badge/409566367.svg)](https://zenodo.org/badge/latestdoi/409566367)
 
+### You will need to download this GitHub page to your local computer to use all functionalities on this README.md file. Validation files that are linked here can also be found individually within this repository in both .Rmd and .html (rendered) formats. Direct links within this README are to the rendered .html documents for each study.
+
+
 ### Pathotype database summary table
 
 * [Pathotype summary table](./README.Rmd)
